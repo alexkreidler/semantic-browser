@@ -1,0 +1,30 @@
+[ {
+  "@id" : "http://lifetracker.alexkreidler.com/ns",
+  "@type" : [ "http://www.w3.org/2002/07/owl#Ontology" ],
+  "http://www.w3.org/2002/07/owl#imports" : [ {
+    "@id" : "http://schema.org/"
+  }, {
+    "@id" : "http://www.w3.org/ns/hydra/core"
+  } ]
+}, {
+  "@id" : "http://lifetracker.alexkreidler.com/ns#ExerciseEvent",
+  "@type" : [ "http://www.w3.org/2002/07/owl#Class" ],
+  "http://www.w3.org/2000/01/rdf-schema#isDefinedBy" : [ {
+    "@value" : "http://lifetracker.alexkreidler.com/ns"
+  } ],
+  "http://www.w3.org/2000/01/rdf-schema#subClassOf" : [ {
+    "@id" : "http://schema.org/Event"
+  } ]
+}, {
+  "@id" : "http://lifetracker.alexkreidler.com/ns#ReadEvent",
+  "@type" : [ "http://www.w3.org/2002/07/owl#Class" ],
+  "http://www.w3.org/2000/01/rdf-schema#subClassOf" : [ {
+    "@id" : "http://schema.org/Event"
+  } ]
+}, {
+  "@id" : "http://lifetracker.alexkreidler.com/ns#WriteEvent",
+  "@type" : [ "http://www.w3.org/2002/07/owl#Class" ],
+  "http://www.w3.org/2000/01/rdf-schema#subClassOf" : [ {
+    "@id" : "http://schema.org/Event"
+  } ]
+} ]

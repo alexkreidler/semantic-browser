@@ -1,0 +1,51 @@
+{
+  "@context": {
+    "hydra": "http://www.w3.org/ns/hydra/core#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "defines": {
+      "@reverse": "rdfs:isDefinedBy"
+    },
+    "comment": "rdfs:comment",
+    "label": "rdfs:label",
+    "domain": {
+      "@id": "rdfs:domain",
+      "@type": "@id"
+    },
+    "range": {
+      "@id": "rdfs:range",
+      "@type": "@id"
+    },
+    "subClassOf": {
+      "@id": "rdfs:subClassOf",
+      "@type": "@id",
+      "@container": "@set"
+    },
+    "subPropertyOf": {
+      "@id": "rdfs:subPropertyOf",
+      "@type": "@id",
+      "@container": "@set"
+    },
+    "seeAlso": {
+      "@id": "rdfs:seeAlso",
+      "@type": "@id"
+    }
+  },
+  "@id": "http://example.com/ontology",
+  "@type": "owl:Ontology",
+  "http://creativecommons.org/ns#attributionName": "Authors",
+  "http://creativecommons.org/ns#attributionURL": {
+    "@id": "http://example.com/ontology"
+  },
+  "http://creativecommons.org/ns#license": {
+    "@id": "http://creativecommons.org/licenses/by/4.0/"
+  },
+  "http://purl.org/dc/terms/description": "Desc",
+  "http://purl.org/dc/terms/publisher": "Authors",
+  "http://purl.org/dc/terms/rights": "Copyright © Authors",
+  "http://purl.org/vocab/vann/preferredNamespacePrefix": "onto",
+  "comment": "Desc",
+  "label": "Name"
+}

@@ -1,0 +1,65 @@
+{
+  "@context": [
+    {
+      "ltk": "http://schemas.alexkreidler.com/lifetracker/",
+      "schema": "http://schema.org/",
+      "time": "http://www.w3.org/2006/time#",
+      "foaf": "http://xmlns.com/foaf/spec#"
+    },
+    "http://www.w3.org/ns/hydra/context.jsonld"
+  ],
+  "@id": "http://lifetracker.alexkreidler.com/ns",
+  "@type": "owl:Ontology",
+  "http://creativecommons.org/ns#attributionName": "Authors",
+  "http://creativecommons.org/ns#attributionURL": {
+    "@id": "http://example.com/ontology"
+  },
+  "http://creativecommons.org/ns#license": {
+    "@id": "http://creativecommons.org/licenses/by/4.0/"
+  },
+  "http://purl.org/dc/terms/description": "Desc",
+  "http://purl.org/dc/terms/publisher": "Authors",
+  "http://purl.org/dc/terms/rights": "Copyright © Authors",
+  "http://purl.org/vocab/vann/preferredNamespacePrefix": "ltk",
+  "comment": "An example ontology for tracking daily life events",
+  "label": "The Life Tracker Ontology",
+  "defines": [
+    {
+      "@id": "ltk:Event",
+      "subClassOf": "schema:Event"
+    },
+    {
+      "@id": "ltk:Project",
+      "label": "Project",
+      "comment": "A project can be a traditional one: e.g. for work, or a non-traditional/personal one like: improve my exercise routine",
+      "supportedProperty": ["rdfs:label", "rdfs:comment", "time:Interval"]
+    },
+    {
+      "@id": "ltk:associatedProject",
+      "label": "associatedProject",
+      "comment": "A project associated with a given event.",
+      "domain": "ltk:Event",
+      "range": "ltk:Project"
+    },
+    {
+      "@id": "ltk:Person",
+      "owl:equivalentClass": ["schema:Person", "foaf:Person"]
+    },
+    {
+      "@id": "ltk:ReadEvent",
+      "supportedProperty": ["ltk:associatedProject"]
+    },
+    {
+      "@id": "ltk:WriteEvent",
+      "supportedProperty": ["ltk:associatedProject"]
+    },
+    {
+      "@id": "ltk:ExerciseEvent",
+      "supportedProperty": ["ltk:associatedProject"]
+    },
+    {
+      "@id": "ltk:SocialEvent",
+      "supportedProperty": ["ltk:associatedProject"]
+    }
+  ]
+}

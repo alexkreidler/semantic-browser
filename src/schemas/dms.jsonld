@@ -1,0 +1,279 @@
+{
+  "@context": {
+    "hydra": "http://www.w3.org/ns/hydra/core#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "defines": {
+      "@reverse": "rdfs:isDefinedBy"
+    },
+    "comment": "rdfs:comment",
+    "label": "rdfs:label",
+    "domain": {
+      "@id": "rdfs:domain",
+      "@type": "@id"
+    },
+    "range": {
+      "@id": "rdfs:range",
+      "@type": "@id"
+    },
+    "subClassOf": {
+      "@id": "rdfs:subClassOf",
+      "@type": "@id",
+      "@container": "@set"
+    },
+    "subPropertyOf": {
+      "@id": "rdfs:subPropertyOf",
+      "@type": "@id",
+      "@container": "@set"
+    },
+    "seeAlso": {
+      "@id": "rdfs:seeAlso",
+      "@type": "@id"
+    },
+    "status": "vs:term_status"
+  },
+  "@id": "http://example.com/ontology",
+  "@type": "owl:Ontology",
+  "http://creativecommons.org/ns#attributionName": "Authors",
+  "http://creativecommons.org/ns#attributionURL": {
+    "@id": "http://example.com/ontology"
+  },
+  "http://creativecommons.org/ns#license": {
+    "@id": "http://creativecommons.org/licenses/by/4.0/"
+  },
+  "http://purl.org/dc/terms/description": "Desc",
+  "http://purl.org/dc/terms/publisher": "Authors",
+  "http://purl.org/dc/terms/rights": "Copyright © Authors",
+  "http://purl.org/vocab/vann/preferredNamespacePrefix": "onto",
+  "comment": "Desc",
+  "label": "Name",
+
+  "defines": [
+    {
+      "@id": "hydra:Resource",
+      "@type": "hydra:Class",
+      "comment": "The class of dereferenceable resources.",
+      "label": "Hydra Resource",
+      "subClassOf": ["rdfs:Resource"],
+      "status": "testing"
+    },
+    {
+      "@id": "hydra:Class",
+      "@type": ["hydra:Resource", "rdfs:Class"],
+      "comment": "The class of Hydra classes. Hydra classes and their instances are dereferenceable resources.",
+      "label": "Hydra Class",
+      "subClassOf": ["hydra:Resource", "rdfs:Class"],
+      "status": "testing"
+    },
+    {
+      "@id": "hydra:Link",
+      "@type": "hydra:Class",
+      "comment": "The class of properties representing links.",
+      "label": "Link",
+      "subClassOf": ["hydra:Resource", "rdf:Property"],
+      "status": "testing"
+    },
+    {
+      "@id": "hydra:apiDocumentation",
+      "@type": "hydra:Link",
+      "comment": "A link to the API documentation",
+      "domain": "hydra:Resource",
+      "label": "apiDocumentation",
+      "range": "hydra:ApiDocumentation",
+      "status": "testing"
+    },
+    {
+      "@id": "hydra:ApiDocumentation",
+      "@type": "hydra:Class",
+      "comment": "The Hydra API documentation class",
+      "label": "ApiDocumentation",
+      "subClassOf": ["hydra:Resource"],
+      "status": "testing"
+    },
+    {
+      "@id": "hydra:entrypoint",
+      "@type": "hydra:Link",
+      "comment": "A link to main entry point of the Web API",
+      "domain": "hydra:ApiDocumentation",
+      "label": "entrypoint",
+      "range": "hydra:Resource",
+      "status": "testing"
+    },
+    {
+      "@id": "hydra:supportedClass",
+      "@type": "hydra:Link",
+      "comment": "A class known to be supported by the Web API",
+      "domain": "hydra:ApiDocumentation",
+      "label": "supported classes",
+      "range": "hydra:Class",
+      "status": "testing"
+    },
+    {
+      "@id": "hydra:possibleStatus",
+      "@type": "hydra:Link",
+      "http://schema.org/domainIncludes": [
+        {
+          "@id": "hydra:ApiDocumentation"
+        },
+        {
+          "@id": "hydra:Operation"
+        }
+      ],
+      "comment": "A status that might be returned by the Web API (other statuses should be expected and properly handled as well)",
+      "label": "possible status",
+      "range": "hydra:Status",
+      "status": "testing"
+    },
+    {
+      "@id": "hydra:supportedProperty",
+      "@type": "hydra:Link",
+      "comment": "The properties known to be supported by a Hydra class",
+      "domain": "hydra:Class",
+      "label": "supported properties",
+      "range": "hydra:SupportedProperty",
+      "status": "testing"
+    },
+    {
+      "@id": "hydra:SupportedProperty",
+      "@type": "hydra:Class",
+      "comment": "A property known to be supported by a Hydra class.",
+      "label": "Supported Property",
+      "subClassOf": ["hydra:Resource"],
+      "status": "testing"
+    },
+    {
+      "@id": "hydra:property",
+      "@type": "rdf:Property",
+      "http://schema.org/domainIncludes": [
+        {
+          "@id": "hydra:SupportedProperty"
+        },
+        {
+          "@id": "hydra:IriTemplateMapping"
+        }
+      ],
+      "comment": "A property",
+      "label": "property",
+      "range": "rdf:Property",
+      "status": "testing"
+    },
+    {
+      "@id": "hydra:required",
+      "@type": "rdf:Property",
+      "http://schema.org/domainIncludes": [
+        {
+          "@id": "hydra:SupportedProperty"
+        },
+        {
+          "@id": "hydra:IriTemplateMapping"
+        }
+      ],
+      "comment": "True if the property is required, false otherwise.",
+      "label": "required",
+      "range": "xsd:boolean",
+      "status": "testing"
+    },
+    {
+      "@id": "hydra:readable",
+      "@type": "rdf:Property",
+      "comment": "True if the client can retrieve the property's value, false otherwise.",
+      "domain": "hydra:SupportedProperty",
+      "label": "readable",
+      "range": "xsd:boolean",
+      "status": "testing"
+    },
+    {
+      "@id": "hydra:writeable",
+      "@type": "rdf:Property",
+      "comment": "True if the client can change the property's value, false otherwise.",
+      "domain": "hydra:SupportedProperty",
+      "label": "writeable",
+      "range": "xsd:boolean",
+      "status": "testing"
+    },
+    {
+      "@id": "hydra:supportedOperation",
+      "@type": "hydra:Link",
+      "http://schema.org/domainIncludes": [
+        {
+          "@id": "hydra:Class"
+        },
+        {
+          "@id": "hydra:Link"
+        },
+        {
+          "@id": "hydra:TemplatedLink"
+        },
+        {
+          "@id": "hydra:SupportedProperty"
+        }
+      ],
+      "comment": "An operation supported by instances of the specific Hydra class or the target of the Hydra link",
+      "label": "supported operation",
+      "range": "hydra:Operation",
+      "status": "testing"
+    },
+    {
+      "@id": "hydra:operation",
+      "@type": "hydra:Link",
+      "comment": "An operation supported by the Hydra resource",
+      "domain": "hydra:Resource",
+      "label": "operation",
+      "range": "hydra:Operation",
+      "status": "testing"
+    },
+    {
+      "@id": "hydra:Operation",
+      "@type": "hydra:Class",
+      "comment": "An operation.",
+      "label": "Operation",
+      "subClassOf": ["hydra:Resource"],
+      "status": "testing"
+    },
+    {
+      "@id": "hydra:method",
+      "@type": "rdf:Property",
+      "comment": "The HTTP method.",
+      "domain": "hydra:Operation",
+      "label": "method",
+      "range": "xsd:string",
+      "status": "testing"
+    },
+    {
+      "@id": "hydra:expects",
+      "@type": "hydra:Link",
+      "http://schema.org/rangeIncludes": [
+        {
+          "@id": "hydra:Resource"
+        },
+        {
+          "@id": "hydra:Class"
+        }
+      ],
+      "comment": "The information expected by the Web API.",
+      "domain": "hydra:Operation",
+      "label": "expects",
+      "range": "hydra:Resource",
+      "status": "testing"
+    },
+    {
+      "@id": "hydra:returns",
+      "@type": "hydra:Link",
+      "http://schema.org/rangeIncludes": [
+        {
+          "@id": "hydra:Resource"
+        },
+        {
+          "@id": "hydra:Class"
+        }
+      ],
+      "comment": "The information returned by the Web API on success",
+      "domain": "hydra:Operation",
+      "label": "returns",
+      "range": "hydra:Resource",
+      "status": "testing"
+    }
+  ]
+}
