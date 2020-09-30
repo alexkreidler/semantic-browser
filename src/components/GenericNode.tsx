@@ -4,7 +4,7 @@ import * as jsonld from "jsonld";
 import { getProperties } from "@semanticweb/loqu";
 
 import { useAsync } from "react-async-hook";
-import { Card } from "@blueprintjs/core";
+import { Card, Position, Tooltip } from "@blueprintjs/core";
 import { statSync } from "fs";
 
 type MinimumDataFormat = {};
@@ -51,14 +51,25 @@ export async function prepData(data: MinimumDataFormat): Promise<PrepResult> {
 
 const LocalProperties = ({ data }: { data: PrepResult }) => {
   let out = [];
+  console.log(data);
+
   for (let a of data.properties) {
     let v = a as any;
     let id = v["@id"];
     console.log(id);
     let value = data.data[id];
     out.push(
-      <div>
-        {v.label}: {value}
+      <div className="datum">
+        <div className="property">
+          <Tooltip
+            hoverOpenDelay={80}
+            content={v.comment}
+            position={Position.TOP}
+          >
+            {v.label}
+          </Tooltip>
+        </div>
+        <div className="value">{value}</div>
       </div>
     );
   }

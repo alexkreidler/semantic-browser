@@ -1,5 +1,5 @@
 {
-    "@context": "https://schema.org",
+    "@context": "http://schema.org/context.jsonld",
     "@type": "Person",
     "@id": "http://example.com/Jane-Doe",
     "address": {

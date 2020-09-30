@@ -23,3 +23,22 @@ body,
 .mosaic-window-body {
   overflow: scroll !important;
 }
+
+.datum {
+  display: flex;
+  width: 20rem;
+  padding: 0.4rem 0.5rem;
+  margin: 0.8rem 0;
+  border-radius: 0.2rem;
+
+  background-color: yellowgreen;
+  color: black;
+}
+
+.property {
+  flex: 1 0 auto;
+}
+/* .property .bp3-popover-wrapper,
+.property .bp3-popover-target {
+  width: 100%;
+} */
