@@ -1,5 +1,6 @@
 import HydraClientFactory, { IApiDocumentation } from "@hydra-cg/heracles.ts";
 // import axios from "axios";
+import { Hydra } from "alcaeus/web"; // (or 'alcaeus/node')
 
 // let httpCall = (url: string, opts?: RequestInit) =>
 //   axios.get(url).then((r) => r);
@@ -10,47 +11,29 @@ let hydraClient = HydraClientFactory.configure()
   .andCreate();
 
 export const examples = [
+  "http://localhost:9090/home/",
   "http://wikibus-sources-staging.herokuapp.com/",
   "https://sources.test.wikibus.org/",
   "https://www.markus-lanthaler.com/hydra/event-api/",
   "https://www.markus-lanthaler.com/hydra/api-demo/",
-  "http://localhost:9090/home/",
 ];
 
 export async function getDocs(
   url: string
-): Promise<{ response: any; doc: IApiDocumentation }> {
+): Promise<{ response: any; doc: any }> {
   console.log("Getting", url);
 
-  const r = await hydraClient.getResource(url);
-  const doc = await hydraClient.getApiDocumentation(url);
-  let val = await r.json();
+  const { response, representation } = await Hydra.loadResource(url);
+  const rootResource = representation!.root!;
 
-  let xv = r.toArray();
-  console.log(xv);
+  // contains supported classes, operations, etc.
+  const apiDocs = Hydra.apiDocumentations[0];
 
-  let it = r.getIterator();
-  console.log(it);
-  // r.it
-  console.log(r);
-
-  console.log(val); //, JSON.stringify(val, null, 2));
-  let v2 = doc;
-  console.log(v2); //, JSON.stringify(v2, null, 2));
-
-  console.log("end");
-
-  // let u2 = url + "books/";
-  // console.log("u2:", u2);
-
-  // const r2 = await hydraClient.getResource(u2).catch((e) => console.log(e));
-  // console.log(r2);
-
-  // let v3 = r2 ? r2.json() : undefined;
-  // console.log(v3);
+  const id = rootResource.id;
+  console.log("Root id", id);
 
   return {
-    response: JSON.stringify(val, null, 2),
-    doc: doc,
+    response: await response?.xhr.json(),
+    doc: rootResource,
   };
 }
