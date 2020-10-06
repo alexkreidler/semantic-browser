@@ -107,7 +107,10 @@ export const WindowManager = observer<WindowProps>(({ session }) => {
                   </ButtonGroup>
                 }
               >
-                <MultiWindow data={session.s.nodes[id].data}></MultiWindow>
+                <MultiWindow
+                  session={session}
+                  data={session.s.nodes[id].data}
+                ></MultiWindow>
               </MosaicWindow>
             )}
           </Observer>

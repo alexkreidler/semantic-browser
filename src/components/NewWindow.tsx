@@ -3,11 +3,12 @@ import { EntityList } from "./EntityList";
 
 import { DEFAULT_ENTRYPOINT, getEntities, Entity } from "../services/get";
 import { useAsync } from "react-async-hook";
+import { BaseState } from "./MultiWindow";
 // import person from "./data.json";
 // import { GenericNode } from "./GenericNode";
 
 export type NewWindowProps = {};
-export const NewWindow: React.FC<NewWindowProps> = () => {
+export const NewWindow: React.FC<BaseState<NewWindowProps>> = () => {
   const stat = useAsync(getEntities, [DEFAULT_ENTRYPOINT]);
   return (
     <div className="window">
