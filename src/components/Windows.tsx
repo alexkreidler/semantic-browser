@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import {
   CreateNode,
   Mosaic,
+  MosaicNode,
   MosaicWindow,
   MosaicZeroState,
 } from "react-mosaic-component";
@@ -17,79 +18,56 @@ import "@blueprintjs/icons/lib/css/blueprint-icons.css";
 
 import { ulid } from "ulid";
 import { Button, ButtonGroup, InputGroup, Popover } from "@blueprintjs/core";
-import { MultiWindow, WindowState } from "./MultiWindow";
+import { MultiWindow } from "./MultiWindow";
 import _ from "lodash";
 
-export type WindowManagerProps = {};
-export type ViewId = string;
-export type Nodes = {
-  [viewId: string]: {
-    title: string;
-    data: WindowState;
-  };
-};
+import { Session } from "./Session";
+import { observer, Observer } from "mobx-react-lite";
 
-// const NW = { type: "NewWindow" };
-const first_key = ulid();
-const nodes: Nodes = {
-  [first_key]: {
-    title: "Window #1",
-    data: { type: "NewWindow" },
-  },
-};
+export type WindowProps = { session: Session };
 
-// Should we allow the windows themselvs to emit an OnChange and control the
+// Should we allow the session.s.nodes themselvs to emit an OnChange and control the
 // value of the window titles
-export const WindowManager: React.FC<WindowManagerProps> = () => {
-  const [windows, setWindows] = useState(nodes);
-  function createNode(windowContext?: WindowState) {
-    console.log("args", windowContext);
-
-    const id = ulid();
-    setWindows({
-      ...windows,
-      ...{
-        [id]: {
-          title: `Window #${Object.keys(windows).length + 1}`,
-          data: windowContext || { type: "NewWindow" },
-        },
-      },
-    });
-    return id;
-  }
-  console.log(windows);
-
+export const WindowManager = observer<WindowProps>(({ session }) => {
   return (
     <Mosaic<string>
       renderTile={(id, path) => (
-        <MosaicWindow<string>
-          path={path}
-          title={windows[id].title}
-          createNode={createNode}
-          additionalControls={
-            <ButtonGroup minimal={true}>
-              <Popover
-                content={
-                  <InputGroup
-                    placeholder="Window Title"
-                    value={windows[id].title}
-                    // TODO: OnChange fix here.
-                    // Tried earlier seemed useState was causing lots of overhead/perf issues
-                  ></InputGroup>
-                }
-              >
-                <Button>Rename Window</Button>
-              </Popover>
-            </ButtonGroup>
-          }
-        >
-          <MultiWindow data={windows[id].data}></MultiWindow>
-        </MosaicWindow>
+        <Observer>
+          {() => (
+            <MosaicWindow<string>
+              path={path}
+              title={session.s.nodes[id].title}
+              createNode={session.createNode}
+              additionalControls={
+                <ButtonGroup minimal={true}>
+                  <Popover
+                    content={
+                      <InputGroup
+                        placeholder="Window Title"
+                        value={session.s.nodes[id].title}
+                        // TODO: OnChange fix here.
+                        // Tried earlier seemed useState was causing lots of overhead/perf issues
+                        onChange={(evt: any) => {
+                          session.s.nodes[id].title = evt.target.value;
+                        }}
+                      ></InputGroup>
+                    }
+                  >
+                    <Button>Rename Window</Button>
+                  </Popover>
+                </ButtonGroup>
+              }
+            >
+              <MultiWindow data={session.s.nodes[id].data}></MultiWindow>
+            </MosaicWindow>
+          )}
+        </Observer>
       )}
-      zeroStateView={<MosaicZeroState createNode={createNode} />}
-      initialValue={first_key}
+      zeroStateView={<MosaicZeroState createNode={session.createNode} />}
+      initialValue={session.s.mosaicState}
+      // onChange={(m) => console.log(m)}
     />
   );
-};
+});
 
 export default WindowManager;

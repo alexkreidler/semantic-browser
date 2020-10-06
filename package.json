@@ -18,6 +18,8 @@
     "@zazuko/rdf-vocabularies": "^2020.8.17",
     "jsonld": "^3.1.1",
     "lodash": "^4.17.20",
+    "mobx": "^6.0.1",
+    "mobx-react-lite": "^3.0.0",
     "react": "^16.13.1",
     "react-async": "^10.0.1",
     "react-async-hook": "^3.6.1",
