@@ -42,3 +42,18 @@ body,
 .property .bp3-popover-target {
   width: 100%;
 } */
+.flex {
+  display: flex;
+}
+.grow {
+  flex: 1 0 auto;
+}
+
+.entity-list .about h1,
+.entity-list .about h2,
+.entity-list .about p {
+  margin-top: 0;
+}
+.entity-list .about p {
+  margin: 0;
+}

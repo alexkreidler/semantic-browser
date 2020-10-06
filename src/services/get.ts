@@ -1,12 +1,9 @@
-import {
-  ApiDocumentation,
-  Class,
-  DocumentedResource,
-  Hydra,
-} from "@alexkreidler/alcaeus"; // (or 'alcaeus/node')
-import { toJSON } from "@semanticweb/loqu";
+import { Class, Hydra, HydraResource } from "@alexkreidler/alcaeus"; // (or 'alcaeus/node')
 
-import * as hydra from "@rdfine/hydra";
+// import { toJSON } from "@semanticweb/loqu";
+// import { hydra } from "@tpluscode/rdf-ns-builders";
+
+import _ from "lodash";
 
 export const DEFAULT_ENTRYPOINT = "http://localhost:9090/hydraRoot/";
 
@@ -14,62 +11,26 @@ const defaultContext = {
   "@context": "http://localhost:9090/context",
 };
 
-export async function getDocs(url: string): Promise<{ doc: any }> {
-  console.log("Getting", url);
+export type Entity = { class: Class; resource: HydraResource };
 
+export async function getEntities(url: string): Promise<Entity[]> {
   const { response, representation } = await Hydra.loadResource(url);
   const rootResource = representation!.root!;
 
-  // contains supported classes, operations, etc.
-  const apiDocs = Hydra.apiDocumentations[0];
-  console.log(Hydra.apiDocumentations);
-  const d = apiDocs!.root! as ApiDocumentation;
+  const links = rootResource.getLinks();
 
-  console.log(d);
+  const classes = links.map((l) => ({
+    class: l.supportedProperty.property.range!,
+  }));
 
-  // console.log(d.classes);
+  const resUnique = links.map((l) => {
+    if (l.resources.length > 1) {
+      throw new Error("Multiple links?!");
+    }
+    return { resource: l.resources[0] };
+  });
 
-  const h = (d as unknown) as hydra.ApiDocumentation;
-  console.log(
-    h.supportedClass.map((cls) => cls.title + " DESC: " + cls.description)
-  );
+  const out = _.merge(classes, resUnique);
 
-  return {
-    doc: await toJSON(d, defaultContext),
-  };
-}
-
-export async function getEntities(
-  url: string
-): Promise<(Class & DocumentedResource)[]> {
-  const { response, representation } = await Hydra.loadResource(url);
-  const rootResource = representation!.root!;
-
-  // contains supported classes, operations, etc.
-  const apiDocs = Hydra.apiDocumentations[0];
-  // console.log(Hydra.apiDocumentations);
-  const d = apiDocs!.root! as ApiDocumentation;
-
-  const cs = rootResource.getCollections();
-
-  const outs = await Promise.all(
-    cs.map(async (col) => {
-      console.log(await toJSON(col));
-
-      // We only use the first type from the hydra:collection linked node
-      const tp = Array.from(col.types)[0];
-
-      return tp;
-    })
-  );
-
-  const entities = outs.map(
-    (typ) =>
-      // We only get one type of the same ID from the API documentation
-      d.classes.filter((v) => typ.id.value === v.id.value)[0] as Class &
-        DocumentedResource
-  );
-  console.log(entities);
-
-  return entities;
+  return out as Entity[];
 }

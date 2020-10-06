@@ -10,20 +10,6 @@ import "react-mosaic-component/react-mosaic-component.css";
 import "@blueprintjs/core/lib/css/blueprint.css";
 import "@blueprintjs/icons/lib/css/blueprint-icons.css";
 
-import { Button } from "@blueprintjs/core";
-// import "./app.css";
-// export class WindowManager implements React.Componen<{}, {}> {
-
-//   createNode(): string {
-//     let id = "hi";
-//     this.nodes[id] = <div>New Node</div>;
-//     return id;
-//   }
-//   render() {
-//     return (
-//     );
-//   }
-// }
 import { ulid } from "ulid";
 import NewWindow from "./NewWindow";
 

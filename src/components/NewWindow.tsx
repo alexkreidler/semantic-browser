@@ -1,9 +1,8 @@
 import React from "react";
-import { Card } from "@blueprintjs/core";
 import DocList from "./DocList";
 
-import person from "./data.json";
-import { GenericNode } from "./GenericNode";
+// import person from "./data.json";
+// import { GenericNode } from "./GenericNode";
 
 export type NewWindowProps = {};
 export const NewWindow: React.FC<NewWindowProps> = () => {
