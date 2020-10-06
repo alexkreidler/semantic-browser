@@ -22,4 +22,6 @@ export const NewWindow: React.FC<NewWindowProps> = () => {
   );
 };
 
-export default NewWindow;
+export type NewWindowState = {
+  type: "NewWindow";
+};
