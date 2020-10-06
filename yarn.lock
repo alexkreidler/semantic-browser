@@ -2,6 +2,29 @@
 # yarn lockfile v1
 
 
+"@alexkreidler/alcaeus@^1.0.2":
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@alexkreidler/alcaeus/-/alcaeus-1.0.2.tgz#a4a50332f74218b36053c0436807d7db3817895d"
+  integrity sha512-NZ91ogiwLrEs3nzVkEJsN1up1j7HBtKDQdepKP0aq1a397oFN/jQU4/uK5w/Q6PbjndiYzfsXyIAPicfm2ct/w==
+  dependencies:
+    "@rdf-esm/data-model" "^0.5.3"
+    "@rdf-esm/formats-common" "^0.5.3"
+    "@rdf-esm/sink-map" "^0.5.0"
+    "@rdf-esm/term-map" "^0.5.0"
+    "@rdf-esm/term-set" "^0.5.0"
+    "@rdfjs/formats-common" "^2.1"
+    "@tpluscode/rdf-ns-builders" "^0.4"
+    "@tpluscode/rdfine" "^0.5.5"
+    clownface "^1"
+    cross-fetch "^3.0.6"
+    es6-url-template "^1.0.3"
+    isomorphic-fetch "^2.2.1"
+    isomorphic-form-data "^2.0.0"
+    parse-link-header "^1.0.1"
+    rdf-dataset-indexed "^0.4.0"
+    rdf-transform-triple-to-quad "^1.0.2"
+    readable-stream "^3.6.0"
+
 "@babel/code-frame@7.8.3", "@babel/code-frame@^7.0.0", "@babel/code-frame@^7.8.3":
   version "7.8.3"
   resolved "https://registry.yarnpkg.com/@babel/code-frame/-/code-frame-7.8.3.tgz#33e25903d7481181534e12ec0a25f16b6fcf419e"
@@ -1381,6 +1404,14 @@
   dependencies:
     readable-stream "^3.6.0"
 
+"@rdf-esm/term-map@^0.5.0":
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/@rdf-esm/term-map/-/term-map-0.5.0.tgz#8c5a68550530d6421762e766c9d38f55eab03c10"
+  integrity sha512-d+kEepkAPKFL5NwsqUQ6jiNizMaBrUyVBdI0qEgGbrDYXTdj3fAWgcMwHGjiJAspRZs6Sg/9B0urOujNKqrjFw==
+  dependencies:
+    "@rdf-esm/to-ntriples" "^0.5.0"
+    "@rdfjs/term-map" "^1.0.0"
+
 "@rdf-esm/term-set@^0.5.0":
   version "0.5.0"
   resolved "https://registry.yarnpkg.com/@rdf-esm/term-set/-/term-set-0.5.0.tgz#a4f0dae0de23f5e639aeb9dd8e1423c38bef4d4d"
@@ -1475,6 +1506,13 @@
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/@rdfjs/sink/-/sink-1.0.3.tgz#cdbb4ecf0ff34e6ad6c301a5bc221508c820568c"
   integrity sha512-2KfYa8mAnptRNeogxhQqkWNXqfYVWO04jQThtXKepySrIwYmz83+WlevQtA4VDLFe+kFd2TwgL29ekPe5XVUfA==
+
+"@rdfjs/term-map@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@rdfjs/term-map/-/term-map-1.0.0.tgz#97e8735f4e99c522099fabeacf73b0de94597452"
+  integrity sha512-xv0trp4DVZigpa8CAifrb0Py1pf07h3PjqRXhXEyM9+UPPoQhczQjYPxx5a+j4U1JQzwfD8vfpfFaveVrKJOSw==
+  dependencies:
+    "@rdfjs/to-ntriples" "^1.0.2"
 
 "@rdfjs/term-set@^1.0.1":
   version "1.0.1"
@@ -2224,27 +2262,6 @@ ajv@^6.12.4:
     fast-json-stable-stringify "^2.0.0"
     json-schema-traverse "^0.4.1"
     uri-js "^4.2.2"
-
-alcaeus@^1.0.0-beta.17:
-  version "1.0.0-beta.18"
-  resolved "https://registry.yarnpkg.com/alcaeus/-/alcaeus-1.0.0-beta.18.tgz#389289d79bf7a975dc9ba3c026ef47483f4bc3fd"
-  integrity sha512-wzL8Q6Qf8K0ptPhM7OHrd8Ws6DqT3/XKwPSiHFXJtb5Jh2ExnJ3jFRfMnqpBzGhskQ+L7lvHL77OA3AXVvq41A==
-  dependencies:
-    "@rdf-esm/data-model" "^0.5.3"
-    "@rdf-esm/formats-common" "^0.5.3"
-    "@rdf-esm/sink-map" "^0.5.0"
-    "@rdf-esm/term-set" "^0.5.0"
-    "@rdfjs/formats-common" "^2.1"
-    "@tpluscode/rdf-ns-builders" "^0.4"
-    "@tpluscode/rdfine" "^0.5.5"
-    clownface "^1"
-    es6-url-template "^1.0.3"
-    isomorphic-fetch "^2.2.1"
-    isomorphic-form-data "^2.0.0"
-    parse-link-header "^1.0.1"
-    rdf-dataset-indexed "^0.4.0"
-    rdf-transform-triple-to-quad "^1.0.2"
-    readable-stream "^3.6.0"
 
 alphanum-sort@^1.0.0:
   version "1.0.2"
@@ -3591,6 +3608,13 @@ create-react-context@^0.3.0:
   dependencies:
     gud "^1.0.0"
     warning "^4.0.3"
+
+cross-fetch@^3.0.6:
+  version "3.0.6"
+  resolved "https://registry.yarnpkg.com/cross-fetch/-/cross-fetch-3.0.6.tgz#3a4040bc8941e653e0e9cf17f29ebcd177d3365c"
+  integrity sha512-KBPUbqgFjzWlVcURG+Svp9TlhA5uliYtiNx/0r8nv0pdypeQCRJ9IaSIc3q/x3q8t3F75cHuwxVql1HFGHCNJQ==
+  dependencies:
+    node-fetch "2.6.1"
 
 cross-spawn@7.0.1:
   version "7.0.1"
@@ -7466,6 +7490,11 @@ no-case@^3.0.3:
     lower-case "^2.0.1"
     tslib "^1.10.0"
 
+node-fetch@2.6.1:
+  version "2.6.1"
+  resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-2.6.1.tgz#045bd323631f76ed2e2b55573394416b639a0052"
+  integrity sha512-V4aYg89jEoVRxRb2fJdAg8FHvI7cEyYdVAh94HH0UIK8oJxUfkjlDQN9RbMx+bEjP7+ggMiFRprSti032Oipxw==
+
 node-fetch@^1.0.1:
   version "1.7.3"
   resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-1.7.3.tgz#980f6f72d85211a5347c6b2bc18c5b84c3eb47ef"
@@ -10893,10 +10922,10 @@ typedarray@^0.0.6:
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
 
-typescript@~3.7.2:
-  version "3.7.5"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.7.5.tgz#0692e21f65fd4108b9330238aac11dd2e177a1ae"
-  integrity sha512-/P5lkRXkWHNAbcJIiHPfRoKqyd7bsyCma1hZNUGfn20qm64T6ZBlrzprymeu918H+mB/0rIg2gGK/BXkhhYgBw==
+typescript@^4.0.0:
+  version "4.0.3"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.0.3.tgz#153bbd468ef07725c1df9c77e8b453f8d36abba5"
+  integrity sha512-tEu6DGxGgRJPb/mVPIZ48e69xCn2yRmCgYmDugAVwmJ6o+0u1RI18eO7E7WBTLYLaEVVOhwQmcdhQHweux/WPg==
 
 ulid@^2.3.0:
   version "2.3.0"

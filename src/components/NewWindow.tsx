@@ -11,7 +11,7 @@ export const NewWindow: React.FC<NewWindowProps> = () => {
     <div style={{ padding: "1rem" }}>
       <h1>New Window</h1>
       <p>Choose the Entity that youd'd like to explore next</p>
-      {/* <GenericNode data={person}></GenericNode>*/}
+      {/* <GenericNode data={person}></GenericNode> */}
       <DocList></DocList>
     </div>
   );

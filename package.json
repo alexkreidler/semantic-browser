@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@alexkreidler/alcaeus": "^1.0.2",
     "@blueprintjs/core": "^3.31.0",
     "@hydra-cg/heracles.ts": "^0.5.1",
     "@testing-library/jest-dom": "^4.2.4",
@@ -13,7 +14,6 @@
     "@types/node": "^12.0.0",
     "@types/react": "^16.9.0",
     "@types/react-dom": "^16.9.0",
-    "alcaeus": "^1.0.0-beta.17",
     "jsonld": "^3.1.1",
     "react": "^16.13.1",
     "react-async": "^10.0.1",
@@ -21,7 +21,7 @@
     "react-dom": "^16.13.1",
     "react-mosaic-component": "^4.1.1",
     "react-scripts": "3.4.3",
-    "typescript": "~3.7.2",
+    "typescript": "^4.0.0",
     "ulid": "^2.3.0"
   },
   "scripts": {

@@ -1,8 +1,8 @@
 /**
  * @jest-environment node
  */
-import { getDocs, examples } from "./get";
+import { getDocs, DEFAULT_ENTRYPOINT } from "./get";
 
 test("fetch resource", async () => {
-  await getDocs(examples[0]);
+  await getDocs(DEFAULT_ENTRYPOINT);
 });
