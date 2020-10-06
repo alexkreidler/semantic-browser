@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Mosaic, MosaicWindow, MosaicZeroState } from "react-mosaic-component";
 
 // doesn't work in jest
@@ -12,30 +12,63 @@ import "@blueprintjs/icons/lib/css/blueprint-icons.css";
 
 import { ulid } from "ulid";
 import NewWindow from "./NewWindow";
+import { Button, ButtonGroup, InputGroup, Popover } from "@blueprintjs/core";
+// import _ from "lodash";
 
 export type WindowManagerProps = {};
+export type ViewId = string;
+
+const first_key = ulid();
 export const WindowManager: React.FC<WindowManagerProps> = () => {
+  const [titleMap, setTitleMap] = useState({ [first_key]: "Window #1" });
+
   let nodes: { [viewId: string]: JSX.Element } = {
-    a: <NewWindow></NewWindow>,
+    [first_key]: <NewWindow></NewWindow>,
   };
   function createNode() {
     const id = ulid();
     nodes[id] = <NewWindow></NewWindow>;
+    setTitleMap({
+      ...titleMap,
+      ...{ [id]: `Window #${Object.keys(titleMap).length + 1}` },
+    });
     return id;
   }
+  console.log(titleMap);
+
   return (
     <Mosaic<string>
       renderTile={(id, path) => (
         <MosaicWindow<string>
           path={path}
-          title={`Window ${id}`}
+          title={titleMap[id] || "No val"}
           createNode={createNode}
+          additionalControls={
+            <ButtonGroup minimal={true}>
+              <Popover
+                content={
+                  <InputGroup
+                    placeholder="Window Title"
+                    value={titleMap[id] || "No val"}
+                    onChange={(evt: any) =>
+                      setTitleMap({
+                        ...titleMap,
+                        ...{ [id]: evt.target.value },
+                      })
+                    }
+                  ></InputGroup>
+                }
+              >
+                <Button>Rename Window</Button>
+              </Popover>
+            </ButtonGroup>
+          }
         >
           {nodes[id]}
         </MosaicWindow>
       )}
       zeroStateView={<MosaicZeroState createNode={createNode} />}
-      initialValue={"a"}
+      initialValue={first_key}
     />
   );
 };
