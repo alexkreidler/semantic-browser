@@ -1,0 +1,36 @@
+{
+    "nodes": {
+        "01EKZT996FHW6Q2SNPNCVJPY4T": {
+            "idx": 1,
+            "title": "Window #1",
+            "data": {
+                "type": "NewWindow"
+            }
+        },
+        "01EKZT9KSA5HT9R8XPXFV7FJ3X": {
+            "idx": 2,
+            "title": "Window #2",
+            "data": {
+                "type": "NewWindow"
+            }
+        },
+        "01EKZT9MAKFDBN10NNQS18H81P": {
+            "idx": 3,
+            "title": "Window #3",
+            "data": {
+                "type": "NewWindow"
+            }
+        }
+    },
+    "mosaicState": {
+        "direction": "row",
+        "second": {
+            "first": "01EKZT9KSA5HT9R8XPXFV7FJ3X",
+            "second": "01EKZT9MAKFDBN10NNQS18H81P",
+            "direction": "column",
+            "splitPercentage": 54.02425578831313
+        },
+        "first": "01EKZT996FHW6Q2SNPNCVJPY4T",
+        "splitPercentage": 29.446854663774403
+    }
+}

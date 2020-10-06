@@ -65,3 +65,10 @@ body,
 .window h1 {
   margin-top: 0;
 }
+.padded {
+  padding: 2rem;
+}
+
+.json-input textarea {
+  margin-bottom: 1rem;
+}

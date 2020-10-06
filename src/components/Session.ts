@@ -8,6 +8,7 @@ import { makeAutoObservable } from "mobx";
 export type ViewId = string;
 export type Nodes = {
   [viewId: string]: {
+    idx: number;
     title: string;
     data: WindowState;
   };
@@ -17,7 +18,7 @@ export interface ISession {
   nodes: Nodes;
   mosaicState: MosaicNode<ViewId>;
 }
-
+type Basic = () => void;
 export class Session {
   public s: ISession;
 
@@ -26,6 +27,7 @@ export class Session {
     this.s = {
       nodes: {
         [first_key]: {
+          idx: 1,
           title: "Window #1",
           data: { type: "NewWindow" },
         },
@@ -39,11 +41,21 @@ export class Session {
     // console.log("args", windowContext);
 
     const id = ulid();
+    const idx = Object.keys(this.s.nodes).length + 1;
     this.s.nodes[id] = {
-      title: `Window #${Object.keys(this.s.nodes).length + 1}`,
+      idx,
+      title: `Window #${idx}`,
       data: windowContext || { type: "NewWindow" },
     };
     return id;
+  };
+
+  resetTitle = (id: ViewId): (() => void) => {
+    const rst = () => {
+      const node = this.s.nodes[id];
+      node.title = `Window #${node.idx}`;
+    };
+    return rst;
   };
 
   out = (): ISession => {
@@ -54,5 +66,16 @@ export class Session {
   };
   serializeURLString = (): string => {
     return encodeURIComponent(JSON.stringify(this.s));
+  };
+
+  fromJSON = (input: string): Error | undefined => {
+    let out;
+    try {
+      out = JSON.parse(input);
+    } catch (error) {
+      return error;
+    }
+    // TODO: maybe validate this a bit more before accepting
+    this.s = out;
   };
 }
