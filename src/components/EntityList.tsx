@@ -9,6 +9,7 @@ import {
   Tooltip,
 } from "@blueprintjs/core";
 import { WindowContext } from "./MultiWindow";
+import { CollectionState } from "./Collection";
 
 // We get some blueprint errors, so use this filter
 // -/(findDOMNode|legacy)/
@@ -32,12 +33,19 @@ export const EntityList = ({ entities }: { entities: Entity[] }) => {
               >
                 <Button
                   icon="database"
-                  onClick={() => {
-                    wc.updateCurrentWindow({
+                  onClick={(evt: React.MouseEvent) => {
+                    evt.stopPropagation();
+                    const ns: CollectionState = {
                       type: "Collection",
                       operation: o,
                       resource: e.resource,
-                    });
+                    };
+
+                    if (evt.ctrlKey) {
+                      wc.newWindow(ns);
+                    } else {
+                      wc.updateCurrentWindow(ns);
+                    }
                   }}
                 >
                   {o.method}

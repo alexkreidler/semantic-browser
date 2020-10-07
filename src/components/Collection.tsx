@@ -27,22 +27,24 @@ const getCollection = async (op: Operation) => {
   return out;
 };
 
-const IntCollection = ({ c }: { c: Collection }) => {
+const IntCollection = ({ c }: { c: HydraResource }) => {
   return (
     <div>
       <p>
         Collection ID: {c.id.value} Has {c.totalItems}
       </p>
-      {c.members.map((r) => {
-        return (
-          <Card>
-            {r.id.value} Types:
-            {Array.from(r.types.keys())
-              .map((r) => r.id.value)
-              .join(",")}
-          </Card>
-        );
-      })}
+      {c.members
+        ? c.members.map((r: HydraResource) => {
+            return (
+              <Card>
+                {r.id.value} Types:
+                {Array.from(r.types.keys())
+                  .map((r) => r.id.value)
+                  .join(",")}
+              </Card>
+            );
+          })
+        : "Whoops, no members found!"}
     </div>
   );
 };
