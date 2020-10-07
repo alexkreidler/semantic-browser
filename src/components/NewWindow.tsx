@@ -3,7 +3,6 @@ import { EntityList } from "./EntityList";
 
 import { DEFAULT_ENTRYPOINT, getEntities, Entity } from "../services/get";
 import { useAsync } from "react-async-hook";
-import { BaseState } from "./MultiWindow";
 // import person from "./data.json";
 // import { GenericNode } from "./GenericNode";
 

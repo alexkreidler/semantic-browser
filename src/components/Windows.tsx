@@ -1,11 +1,5 @@
 import React, { useState } from "react";
-import {
-  CreateNode,
-  Mosaic,
-  MosaicNode,
-  MosaicWindow,
-  MosaicZeroState,
-} from "react-mosaic-component";
+import { Mosaic, MosaicWindow, MosaicZeroState } from "react-mosaic-component";
 
 // doesn't work in jest
 // import "@mosaic/theme.css";
@@ -16,7 +10,6 @@ import "react-mosaic-component/react-mosaic-component.css";
 import "@blueprintjs/core/lib/css/blueprint.css";
 import "@blueprintjs/icons/lib/css/blueprint-icons.css";
 
-import { ulid } from "ulid";
 import {
   Button,
   ButtonGroup,
@@ -25,7 +18,6 @@ import {
   InputGroup,
   Intent,
   Popover,
-  Text,
   TextArea,
 } from "@blueprintjs/core";
 import { MultiWindow } from "./MultiWindow";

@@ -1,6 +1,5 @@
 import { ulid } from "ulid";
-import { Button, ButtonGroup, InputGroup, Popover } from "@blueprintjs/core";
-import { MultiWindow, WindowState } from "./MultiWindow";
+import { WindowState } from "./MultiWindow";
 import { MosaicNode } from "react-mosaic-component";
 
 import { makeAutoObservable } from "mobx";

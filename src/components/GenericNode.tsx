@@ -1,16 +1,9 @@
 import React from "react";
 
-import * as jsonld from "jsonld";
-import {
-  getProperties,
-  MinimumDataFormat,
-  PrepResult,
-  prepData,
-} from "@semanticweb/loqu";
+import { MinimumDataFormat, PrepResult, prepData } from "@semanticweb/loqu";
 
 import { useAsync } from "react-async-hook";
-import { Card, Position, Tooltip } from "@blueprintjs/core";
-import { statSync } from "fs";
+import { Position, Tooltip } from "@blueprintjs/core";
 
 type GenericNodeProps = {
   data: MinimumDataFormat;

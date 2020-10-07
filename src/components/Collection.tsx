@@ -4,23 +4,32 @@ import {
   Collection,
   Hydra,
   HydraResource,
-  Operation,
+  // Operation,
 } from "@alexkreidler/alcaeus";
 import { observer } from "mobx-react-lite";
 import { useAsync } from "react-async-hook";
 import { Card } from "@blueprintjs/core";
 import { toJSON } from "@semanticweb/loqu";
+// import RdfResourceImpl, { RdfResource } from "@tpluscode/rdfine";
+
+// import { namedNode } from "@rdfjs/data-model";
 
 export type CollectionState = {
   type: "Collection";
-  resource: HydraResource;
-  operation: Operation;
-  // resourceIRI: string;
-  // operationIRI: string;
+  resourceIRI: string;
+  operationIRI: string;
 };
 
-const getCollection = async (op: Operation) => {
-  console.log("got op", op);
+const doOperationByID = async (resource: string, operation: string) => {
+  const { representation } = await Hydra.loadResource(resource);
+  const r = representation?.root!;
+  const ops = r.getOperationsDeep().filter((op) => {
+    return op.supportedOperation.id.value == operation;
+  });
+  if (ops.length !== 1) {
+    throw new Error("Found invalid number of operations");
+  }
+  const op = ops[0];
 
   const out = (await op.invoke()).representation?.root!;
   console.log(await toJSON(out));
@@ -51,13 +60,17 @@ const IntCollection = ({ c }: { c: HydraResource }) => {
 
 export const CollectionView = observer(
   ({ data }: BaseState<CollectionState>) => {
-    console.log(data);
+    const stat = useAsync(doOperationByID, [
+      data.resourceIRI,
+      data.operationIRI,
+    ]);
 
-    const stat = useAsync(getCollection, [data.operation]);
+    if (stat.error) {
+      throw stat.error;
+    }
     return (
       <div className="window">
         <h1>Collection</h1>
-        <p>{data.resource.id.value}</p>
         {stat.result ? (
           <IntCollection c={stat.result as Collection}></IntCollection>
         ) : (

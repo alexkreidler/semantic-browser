@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
-import { DEFAULT_ENTRYPOINT, getEntities, Entity } from "../services/get";
-import { useAsync } from "react-async-hook";
+import { Entity } from "../services/get";
+
 import {
   Button,
   ButtonGroup,
@@ -37,8 +37,8 @@ export const EntityList = ({ entities }: { entities: Entity[] }) => {
                     evt.stopPropagation();
                     const ns: CollectionState = {
                       type: "Collection",
-                      operation: o,
-                      resource: e.resource,
+                      operationIRI: o.supportedOperation.id.value,
+                      resourceIRI: e.resource.id.value,
                     };
 
                     if (evt.ctrlKey) {
