@@ -37,7 +37,7 @@ import { observer, Observer } from "mobx-react-lite";
 export type WindowProps = { session: Session };
 
 const DSER = "Deserialize from JSON";
-
+const SER = "Serialize to JSON";
 const DeserializeSubmission = observer(
   ({ onSubmit }: { onSubmit: (input: string) => Error | undefined }) => {
     const [value, setValue] = useState("");
@@ -65,12 +65,28 @@ const DeserializeSubmission = observer(
 // value of the window titles
 export const WindowManager = observer<WindowProps>(({ session }) => {
   const [isOpen, setOpen] = useState(false);
+  const [purpose, setPurpose] = useState<"ser" | "de">("ser");
   return (
     <>
-      <Dialog title={DSER} isOpen={isOpen} onClose={() => setOpen(!isOpen)}>
-        <DeserializeSubmission
-          onSubmit={(val) => session.fromJSON(val)}
-        ></DeserializeSubmission>
+      <Dialog
+        title={purpose == "ser" ? SER : DSER}
+        isOpen={isOpen}
+        onClose={() => setOpen(!isOpen)}
+      >
+        {purpose == "ser" ? (
+          <div className="padded">
+            {/* <h1>Output</h1> */}
+            <TextArea
+              large={true}
+              fill={true}
+              value={session.serializeJSON()}
+            />
+          </div>
+        ) : (
+          <DeserializeSubmission
+            onSubmit={(val) => session.fromJSON(val)}
+          ></DeserializeSubmission>
+        )}
       </Dialog>
       <Mosaic<string>
         renderTile={(id, path) => (
@@ -100,17 +116,28 @@ export const WindowManager = observer<WindowProps>(({ session }) => {
                     <Button onClick={session.resetTitle(id)}>
                       Reset Window Name
                     </Button>
-                    <Button onClick={() => setOpen(!isOpen)}>{DSER}</Button>
-                    <Button onClick={() => alert(session.serializeJSON())}>
-                      Serialize to JSON
+                    {/* TODO: Consider putting serialize and deserialize in
+                    a Command Palette type interface using Blueprint Omnibar  */}
+                    <Button
+                      onClick={() => {
+                        setPurpose("de");
+                        setOpen(!isOpen);
+                      }}
+                    >
+                      {DSER}
+                    </Button>
+                    <Button
+                      onClick={() => {
+                        setPurpose("ser");
+                        setOpen(!isOpen);
+                      }}
+                    >
+                      {SER}
                     </Button>
                   </ButtonGroup>
                 }
               >
-                <MultiWindow
-                  session={session}
-                  data={session.s.nodes[id].data}
-                ></MultiWindow>
+                <MultiWindow session={session} id={id}></MultiWindow>
               </MosaicWindow>
             )}
           </Observer>

@@ -8,7 +8,7 @@ import { BaseState } from "./MultiWindow";
 // import { GenericNode } from "./GenericNode";
 
 export type NewWindowProps = {};
-export const NewWindow: React.FC<BaseState<NewWindowProps>> = () => {
+export const NewWindow: React.FC<NewWindowProps> = () => {
   const stat = useAsync(getEntities, [DEFAULT_ENTRYPOINT]);
   return (
     <div className="window">

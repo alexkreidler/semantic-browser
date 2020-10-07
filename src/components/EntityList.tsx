@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { DEFAULT_ENTRYPOINT, getEntities, Entity } from "../services/get";
 import { useAsync } from "react-async-hook";
 import {
@@ -8,11 +8,13 @@ import {
   Position,
   Tooltip,
 } from "@blueprintjs/core";
+import { WindowContext } from "./MultiWindow";
 
 // We get some blueprint errors, so use this filter
 // -/(findDOMNode|legacy)/
 
 export const EntityList = ({ entities }: { entities: Entity[] }) => {
+  const wc = useContext(WindowContext);
   return (
     <div>
       {entities.map((e) => (
@@ -31,7 +33,11 @@ export const EntityList = ({ entities }: { entities: Entity[] }) => {
                 <Button
                   icon="database"
                   onClick={() => {
-                    o.invoke();
+                    wc.updateCurrentWindow({
+                      type: "Collection",
+                      op: o,
+                      resource: e.resource,
+                    });
                   }}
                 >
                   {o.method}
