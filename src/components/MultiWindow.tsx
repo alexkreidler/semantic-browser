@@ -1,7 +1,7 @@
 import { Session, ViewId } from "./Session";
 import { observer } from "mobx-react-lite";
 import React, { createContext } from "react";
-import { Collection, CollectionState } from "./Collection";
+import { CollectionView, CollectionState } from "./Collection";
 import { NewWindow, NewWindowState } from "./NewWindow";
 
 import { makeAutoObservable } from "mobx";
@@ -56,7 +56,7 @@ export const MultiWindow = observer(({ id, session }: MultiWindowProps) => {
         return <NewWindow></NewWindow>;
 
       case "Collection":
-        return <Collection data={d}></Collection>;
+        return <CollectionView data={d}></CollectionView>;
 
       default:
         return <>Whoops! There's been an error.</>;

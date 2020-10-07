@@ -5,6 +5,7 @@
   "dependencies": {
     "@alexkreidler/alcaeus": "^1.0.2",
     "@blueprintjs/core": "^3.33.0",
+    "@rdfjs/formats-common": "^2.1.0",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
@@ -13,6 +14,7 @@
     "@types/jsonld": "^1.5.1",
     "@types/lodash": "^4.14.161",
     "@types/node": "^12.0.0",
+    "@types/rdfjs__formats-common": "^2.0.1",
     "@types/react": "^16.9.0",
     "@types/react-dom": "^16.9.0",
     "@zazuko/rdf-vocabularies": "^2020.8.17",
@@ -20,8 +22,8 @@
     "lodash": "^4.17.20",
     "mobx": "^6.0.1",
     "mobx-react-lite": "^3.0.0",
+    "rdf-dataset-indexed": "^0.4.0",
     "react": "^16.13.1",
-    "react-async": "^10.0.1",
     "react-async-hook": "^3.6.1",
     "react-dom": "^16.13.1",
     "react-mosaic-component": "^4.1.1",
@@ -51,6 +53,7 @@
     ]
   },
   "devDependencies": {
+    "@types/rdf-dataset-indexed": "^0.4.5",
     "ts-jest": "^26.4.0"
   }
 }

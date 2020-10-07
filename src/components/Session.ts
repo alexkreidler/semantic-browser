@@ -4,6 +4,14 @@ import { MultiWindow, WindowState } from "./MultiWindow";
 import { MosaicNode } from "react-mosaic-component";
 
 import { makeAutoObservable } from "mobx";
+// import { HydraClient } from "@alexkreidler/alcaeus/alcaeus";
+// import datasetIndexed from "rdf-dataset-indexed";
+// import { create } from "@alexkreidler/alcaeus";
+
+// import formats from "@rdfjs/formats-common";
+// import { HydraClient } from "@alexkreidler/alcaeus/dist/types/alcaeus";
+// import DatasetIndexed from "rdf-dataset-indexed/dataset";
+// const parsers = formats.parsers;
 
 export type ViewId = string;
 export type Nodes = {
@@ -21,8 +29,20 @@ export interface ISession {
 type Basic = () => void;
 export class Session {
   public s: ISession;
+  // private h: HydraClient;
+  // private data: DatasetIndexed;
 
   constructor() {
+    // this.data = datasetIndexed();
+    // this.h = create({
+    //   dataset: this.data,
+    //   fetch,
+    //   Headers,
+    //   parsers,
+    //   datasetFactory: datasetIndexed,
+    // });
+    // this.data.size
+
     const first_key = ulid();
     this.s = {
       nodes: {

@@ -26,3 +26,15 @@ If the `graph` in `ResourceStore` always matches the Resource's IRI, then ser/de
 
 serialize: a list of all unique `graph` items
 deser: alceus.loadResource for each item
+
+However this assumes that the external state/store of data (each URL from the graphs) is available and the same.
+
+Otherwise, we could export each named graph to Turtle, or other formats via RDF/JS interface.
+
+Would need access to internal dataset, that's OK
+
+Could create a version of rdf-dataset-indexed or any rdf/js Dataset implementation that acted like an Atom and indicated when data was updated. However would this cause every .get call to be run?
+
+Also the inconsistency between the graph and object data model of JS means perf could be problem. I see lots of iteration in the N3Store.js implementation.
+
+For now: work on Collection using passed objects.

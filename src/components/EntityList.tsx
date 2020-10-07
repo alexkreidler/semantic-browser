@@ -35,7 +35,7 @@ export const EntityList = ({ entities }: { entities: Entity[] }) => {
                   onClick={() => {
                     wc.updateCurrentWindow({
                       type: "Collection",
-                      op: o,
+                      operation: o,
                       resource: e.resource,
                     });
                   }}

@@ -1,0 +1,8 @@
+{
+  "@context": {
+    "hydra": "http://www.w3.org/ns/hydra/core#",
+    "vocab": "http://markus-lanthaler.com/hydra/event-api/vocab#",
+    "EventCollection": "vocab:EventCollection",
+    "members": "http://www.w3.org/ns/hydra/core#member"
+  }
+}
