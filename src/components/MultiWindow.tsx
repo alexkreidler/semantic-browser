@@ -7,6 +7,7 @@ import { NewWindow, NewWindowState } from "./NewWindow"
 import { makeAutoObservable } from "mobx"
 import { MosaicWindowContext } from "react-mosaic-component"
 import { TestGenerics } from "./TestGenerics"
+// import { TestGenerics } from "./TestGenerics"
 export type MultiWindowProps = {
   id: ViewId
   session: Session

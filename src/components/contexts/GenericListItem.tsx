@@ -1,28 +1,18 @@
 import { Resource } from "@rdfine/hydra"
-import {
-  ClownfaceSpec,
-  DocumentedResource,
-  RDFineSpec,
-  renderSingleComponent,
-  SemanticComponent,
-  Strictness,
-} from "@semanticweb/loqu"
+import { DocumentedResource, RDFineSpec, SemanticComponent, Strictness } from "@semanticweb/loqu"
 import React from "react"
-import data from "../data.json"
-import * as jsonld from "jsonld"
-import { Dataset, Quad } from "rdf-js"
-import { useAsync } from "react-async-hook"
 
 // declare module "@graphy/memory.dataset.fast"
 // import {FastDataset} from "../@types/index.d.ts"
-import dataset, { AnyQuad } from "@graphy/memory.dataset.fast"
 import { schema } from "@tpluscode/rdf-ns-builders"
-import { DataFactory } from "rdf-data-factory"
-import { DebugDataset } from "../DebugDataset"
+import { Card, Tooltip } from "@blueprintjs/core"
 
-const factory = new DataFactory()
+export type ListItemProps = {
+  /** The IRI for the name property. This will replace the existing hydra, rdfs, and schema labels */
+  nameProperty?: string
+}
 
-export const GComp: SemanticComponent<RDFineSpec> = {
+export const GComp: SemanticComponent<RDFineSpec, ListItemProps> = {
   selector: {
     iri: /.*/,
   },
@@ -33,47 +23,34 @@ export const GComp: SemanticComponent<RDFineSpec> = {
     },
   },
 
-  component: ({ data, spec }) => {
-    console.log("Inner comp")
+  component: ({ data, props }) => {
+    console.log("Inner comp", props)
 
-    const d = (data.object as Resource) as DocumentedResource
+    const d = (data.object as Resource) as Resource & DocumentedResource
+
+    console.log(d)
+    console.log(d.pointer.out(schema.title).terms[0].termType)
 
     return (
-      <div>
-        <h2>{d.title}</h2>
-        <p>{d.description}</p>
-      </div>
+      <Card className="generic-list-item">
+        {/* TODO: allow clicking on which title/description property to dereference */}
+        {props && props.nameProperty ? (
+          <Tooltip content={props.nameProperty}>
+            <h2>{d.getString(props.nameProperty)}</h2>
+          </Tooltip>
+        ) : (
+          <Tooltip content={d.titleFromProperty}>
+            <h2>{d.title}</h2>
+          </Tooltip>
+        )}
+
+        {/* TODO: make the ID a link to that resource */}
+        <p>ID: {d.id.value}</p>
+
+        <Tooltip content={d.descriptionFromProperty}>
+          <p>Description: {d.description}</p>
+        </Tooltip>
+      </Card>
     )
   },
-}
-
-const loadData = async () => {
-  const qs = (await jsonld.toRDF(data)) as Quad[]
-
-  const ds = new DebugDataset()
-  ds.addAll(qs)
-
-  return ds
-}
-
-// { data }: { data: any }
-
-export const GenericListItemTest = () => {
-  const status = useAsync(loadData, [])
-  switch (status.status) {
-    case "success":
-      const d = status.result!
-      const o = renderSingleComponent(GComp, {
-        // @ts-ignore
-        dataset: d,
-        node: factory.namedNode("http://example.com/Jane-Doe"),
-      })
-      // console.log("Inner out", o)
-
-      return <>{o}</>
-
-    case "error":
-      throw status.error
-  }
-  return <>"failed"</>
 }

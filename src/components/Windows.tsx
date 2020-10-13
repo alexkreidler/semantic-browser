@@ -6,10 +6,6 @@ import { Mosaic, MosaicWindow, MosaicZeroState } from "react-mosaic-component"
 // import "@blueprintjs/core/lib/css/blueprint.css";
 // import "@blueprintjs/icons/lib/css/blueprint-icons.css";
 
-import "react-mosaic-component/react-mosaic-component.css"
-import "@blueprintjs/core/lib/css/blueprint.css"
-import "@blueprintjs/icons/lib/css/blueprint-icons.css"
-
 import { Button, ButtonGroup, Colors, Dialog, InputGroup, Intent, Popover, TextArea } from "@blueprintjs/core"
 import { MultiWindow } from "./MultiWindow"
 import _ from "lodash"
@@ -30,7 +26,7 @@ const DeserializeSubmission = observer(({ onSubmit }: { onSubmit: (input: string
         large={true}
         placeholder="Paste JSON here..."
         fill={true}
-        onChange={evt => setValue(evt.target.value)}
+        onChange={(evt) => setValue(evt.target.value)}
         value={value}
         intent={error ? Intent.DANGER : undefined}
       />
@@ -54,7 +50,7 @@ export const WindowManager = observer<WindowProps>(({ session }) => {
             <TextArea large={true} fill={true} value={session.serializeJSON()} />
           </div>
         ) : (
-          <DeserializeSubmission onSubmit={val => session.fromJSON(val)}></DeserializeSubmission>
+          <DeserializeSubmission onSubmit={(val) => session.fromJSON(val)}></DeserializeSubmission>
         )}
       </Dialog>
       <Mosaic<string>
@@ -112,7 +108,7 @@ export const WindowManager = observer<WindowProps>(({ session }) => {
         zeroStateView={<MosaicZeroState createNode={session.createNode} />}
         // initialValue={session.s.mosaicState}
         value={session.s.mosaicState}
-        onChange={m => {
+        onChange={(m) => {
           session.s.mosaicState = m!
         }}
       />

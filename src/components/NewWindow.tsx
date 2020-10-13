@@ -8,12 +8,12 @@ import { useAsync } from "react-async-hook"
 
 export type NewWindowProps = {}
 export const NewWindow: React.FC<NewWindowProps> = () => {
-  const stat = useAsync(getEntities, [DEFAULT_ENTRYPOINT])
+  // const stat = useAsync(getEntities, [DEFAULT_ENTRYPOINT])
   return (
     <div className="window">
       <h1>New Window</h1>
       <p>Choose the Entity that youd'd like to explore next:</p>
-      {stat.result ? <EntityList entities={stat.result}></EntityList> : <p>Loading...</p>}
+      {/* {stat.result ? <EntityList entities={stat.result}></EntityList> : <p>Loading...</p>} */}
     </div>
   )
 }

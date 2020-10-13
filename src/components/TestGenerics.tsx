@@ -1,5 +1,5 @@
 import React from "react"
-import { GenericListItemTest } from "./contexts/GenericListItem"
+import { GenericListItemTest } from "./contexts/GenericListItem.stories"
 
 export function TestGenerics() {
   return (
