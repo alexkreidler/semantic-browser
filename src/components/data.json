@@ -1,5 +1,5 @@
 {
-    "@context": "http://schema.org/docs/jsonldcontext.jsonld",
+    "@context": "https://schema.org/docs/jsonldcontext.jsonld",
     "@type": "Person",
     "@id": "http://example.com/Jane-Doe",
     "address": {
@@ -26,6 +26,8 @@
     "nationality": "Albanian",
     "telephone": "(123) 456-6789",
     "url": "http://www.example.com",
+    "title": "A person",
+    "description": "this is here b/c deref",
     "sameAs": [
         "https://www.facebook.com/",
         "https://www.linkedin.com/",

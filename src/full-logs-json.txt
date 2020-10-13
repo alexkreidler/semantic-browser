@@ -1,0 +1,145 @@
+
+The development server has disconnected.
+Refresh the page if necessary. 7.chunk.js:182321:13
+[HMR] Waiting for update signal from WDS... log.js:24
+Download the React DevTools for a better development experience: https://fb.me/react-devtools react-dom.development.js:24994
+Warning: findDOMNode is deprecated in StrictMode. findDOMNode was passed an instance of Blueprint3.ResizeSensor which is inside StrictMode. Instead, add a ref directly to the element you want to reference. Learn more about using refs safely here: https://fb.me/react-strict-mode-find-node
+    in span (created by InnerReference)
+    in Blueprint3.ResizeSensor (created by InnerReference)
+    in InnerReference (created by Context.Consumer)
+    in Reference (created by Blueprint3.Popover)
+    in span (created by Blueprint3.Popover)
+    in Manager (created by Blueprint3.Popover)
+    in Blueprint3.Popover (at Windows.tsx:70)
+    in div (created by Blueprint3.ButtonGroup)
+    in Blueprint3.ButtonGroup (at Windows.tsx:69)
+    in div (created by InternalMosaicWindow)
+    in div (created by InternalMosaicWindow)
+    in InternalMosaicWindow (created by Context.Consumer)
+    in DragSource(InternalMosaicWindow) (created by Context.Consumer)
+    in DropTarget(DragSource(InternalMosaicWindow)) (created by MosaicWindow)
+    in MosaicWindow (at Windows.tsx:64)
+    in Observer (at Windows.tsx:62)
+    in div (created by MosaicRoot)
+    in div (created by MosaicRoot)
+    in MosaicRoot (created by MosaicWithoutDragDropContext)
+    in div (created by MosaicWithoutDragDropContext)
+    in MosaicWithoutDragDropContext (created by Mosaic)
+    in Unknown (created by Mosaic)
+    in Mosaic (at Windows.tsx:60)
+    in wrappedComponent (at App.tsx:9)
+    in App (at src/index.tsx:9)
+    in StrictMode (at src/index.tsx:8) index.js:1
+./src/components/Windows.tsx
+  Line 15:8:   '_' is defined but never used        @typescript-eslint/no-unused-vars
+  Line 50:30:  Expected '===' and instead saw '=='  eqeqeq
+  Line 51:18:  Expected '===' and instead saw '=='  eqeqeq webpackHotDevClient.js:138
+./src/components/contexts/GenericListItem.tsx
+  Line 2:10:   'ClownfaceSpec' is defined but never used  @typescript-eslint/no-unused-vars
+  Line 6:10:   'Dataset' is defined but never used        @typescript-eslint/no-unused-vars
+  Line 11:8:   'dataset' is defined but never used        @typescript-eslint/no-unused-vars
+  Line 11:19:  'AnyQuad' is defined but never used        @typescript-eslint/no-unused-vars webpackHotDevClient.js:138
+./src/components/MultiWindow.tsx
+  Line 5:10:  'NewWindow' is defined but never used  @typescript-eslint/no-unused-vars webpackHotDevClient.js:138
+./src/components/Collection.tsx
+  Line 5:3:    'Resource' is defined but never used  @typescript-eslint/no-unused-vars
+  Line 27:43:  Expected '===' and instead saw '=='   eqeqeq webpackHotDevClient.js:138
+DebugDataset:  addAll DebugDataset.ts:28
+Got spec 
+Object { format: "rdfine" }
+components.ts:45
+data 
+Object { dataset: {…}, node: {…} }
+components.ts:46
+Inner comp GenericListItem.tsx:30
+DebugDataset: match(subject: {"termType":"NamedNode","value":"http://example.com/Jane-Doe"} predicate: {"value":"http://www.w3.org/1999/02/22-rdf-syntax-ns#type"} object: null graph: {}) DebugDataset.ts:106
+DebugDataset: match(subject: {"termType":"NamedNode","value":"http://example.com/Jane-Doe"} predicate: null object: null graph: {}) DebugDataset.ts:106
+DebugDataset: match(subject: {"value":"_:b0","isAnonymous":false} predicate: {"value":"http://www.w3.org/1999/02/22-rdf-syntax-ns#type"} object: null graph: {}) DebugDataset.ts:106
+DebugDataset: match(subject: {"value":"_:b0","isAnonymous":false} predicate: null object: null graph: {}) DebugDataset.ts:106
+DebugDataset: match(subject: {"value":"http://www.example.com/JohnColleague.html"} predicate: {"value":"http://www.w3.org/1999/02/22-rdf-syntax-ns#type"} object: null graph: {}) DebugDataset.ts:106
+DebugDataset: match(subject: {"value":"http://www.example.com/JohnColleague.html"} predicate: null object: null graph: {}) DebugDataset.ts:106
+DebugDataset: match(subject: {"value":"http://www.example.com/JameColleague.html"} predicate: {"value":"http://www.w3.org/1999/02/22-rdf-syntax-ns#type"} object: null graph: {}) DebugDataset.ts:106
+DebugDataset: match(subject: {"value":"http://www.example.com/JameColleague.html"} predicate: null object: null graph: {}) DebugDataset.ts:106
+DebugDataset: match(subject: {"value":"https://www.facebook.com/"} predicate: {"value":"http://www.w3.org/1999/02/22-rdf-syntax-ns#type"} object: null graph: {}) DebugDataset.ts:106
+DebugDataset: match(subject: {"value":"https://www.facebook.com/"} predicate: null object: null graph: {}) DebugDataset.ts:106
+DebugDataset: match(subject: {"value":"https://www.linkedin.com/"} predicate: {"value":"http://www.w3.org/1999/02/22-rdf-syntax-ns#type"} object: null graph: {}) DebugDataset.ts:106
+DebugDataset: match(subject: {"value":"https://www.linkedin.com/"} predicate: null object: null graph: {}) DebugDataset.ts:106
+DebugDataset: match(subject: {"value":"http://twitter.com/"} predicate: {"value":"http://www.w3.org/1999/02/22-rdf-syntax-ns#type"} object: null graph: {}) DebugDataset.ts:106
+DebugDataset: match(subject: {"value":"http://twitter.com/"} predicate: null object: null graph: {}) DebugDataset.ts:106
+DebugDataset: match(subject: {"value":"http://instagram.com/"} predicate: {"value":"http://www.w3.org/1999/02/22-rdf-syntax-ns#type"} object: null graph: {}) DebugDataset.ts:106
+DebugDataset: match(subject: {"value":"http://instagram.com/"} predicate: null object: null graph: {}) DebugDataset.ts:106
+DebugDataset: match(subject: {"value":"https://plus.google.com/"} predicate: {"value":"http://www.w3.org/1999/02/22-rdf-syntax-ns#type"} object: null graph: {}) DebugDataset.ts:106
+DebugDataset: match(subject: {"value":"https://plus.google.com/"} predicate: null object: null graph: {}) DebugDataset.ts:106
+DebugDataset: match(subject: {"value":"http://www.example.com"} predicate: {"value":"http://www.w3.org/1999/02/22-rdf-syntax-ns#type"} object: null graph: {}) DebugDataset.ts:106
+DebugDataset: match(subject: {"value":"http://www.example.com"} predicate: null object: null graph: {}) DebugDataset.ts:106
+DebugDataset: match(subject: {"value":"_:b1","isAnonymous":false} predicate: {"value":"http://www.w3.org/1999/02/22-rdf-syntax-ns#type"} object: null graph: {}) DebugDataset.ts:106
+DebugDataset: match(subject: {"value":"_:b1","isAnonymous":false} predicate: null object: null graph: {}) DebugDataset.ts:106
+DebugDataset: match(subject: {"value":"_:b2","isAnonymous":false} predicate: {"value":"http://www.w3.org/1999/02/22-rdf-syntax-ns#type"} object: null graph: {}) DebugDataset.ts:106
+DebugDataset: match(subject: {"value":"_:b2","isAnonymous":false} predicate: null object: null graph: {}) DebugDataset.ts:106
+DebugDataset: match(subject: {"value":"_:b3","isAnonymous":false} predicate: {"value":"http://www.w3.org/1999/02/22-rdf-syntax-ns#type"} object: null graph: {}) DebugDataset.ts:106
+DebugDataset: match(subject: {"value":"_:b3","isAnonymous":false} predicate: null object: null graph: {}) DebugDataset.ts:106
+DebugDataset: match(subject: {"value":"_:b4","isAnonymous":false} predicate: {"value":"http://www.w3.org/1999/02/22-rdf-syntax-ns#type"} object: null graph: {}) DebugDataset.ts:106
+DebugDataset: match(subject: {"value":"_:b4","isAnonymous":false} predicate: null object: null graph: {}) DebugDataset.ts:106
+DebugDataset: match(subject: {"value":"_:b5","isAnonymous":false} predicate: {"value":"http://www.w3.org/1999/02/22-rdf-syntax-ns#type"} object: null graph: {}) DebugDataset.ts:106
+DebugDataset: match(subject: {"value":"_:b5","isAnonymous":false} predicate: null object: null graph: {}) DebugDataset.ts:106
+DebugDataset: match(subject: {"value":"_:b6","isAnonymous":false} predicate: {"value":"http://www.w3.org/1999/02/22-rdf-syntax-ns#type"} object: null graph: {}) DebugDataset.ts:106
+DebugDataset: match(subject: {"value":"_:b6","isAnonymous":false} predicate: null object: null graph: {}) DebugDataset.ts:106
+undefined GenericListItem.tsx:35
+Proxy { <target>: {…}, <handler>: {…} }
+GenericListItem.tsx:37
+Array [ "A person" ]
+GenericListItem.tsx:39
+null GenericListItem.tsx:41
+null GenericListItem.tsx:42
+null GenericListItem.tsx:43
+Got spec 
+Object { format: "rdfine" }
+components.ts:45
+data 
+Object { dataset: {…}, node: {…} }
+components.ts:46
+Inner comp GenericListItem.tsx:30
+DebugDataset: match(subject: {"termType":"NamedNode","value":"http://example.com/Jane-Doe"} predicate: {"value":"http://www.w3.org/1999/02/22-rdf-syntax-ns#type"} object: null graph: {}) DebugDataset.ts:106
+DebugDataset: match(subject: {"termType":"NamedNode","value":"http://example.com/Jane-Doe"} predicate: null object: null graph: {}) DebugDataset.ts:106
+DebugDataset: match(subject: {"value":"_:b0","isAnonymous":false} predicate: {"value":"http://www.w3.org/1999/02/22-rdf-syntax-ns#type"} object: null graph: {}) DebugDataset.ts:106
+DebugDataset: match(subject: {"value":"_:b0","isAnonymous":false} predicate: null object: null graph: {}) DebugDataset.ts:106
+DebugDataset: match(subject: {"value":"http://www.example.com/JohnColleague.html"} predicate: {"value":"http://www.w3.org/1999/02/22-rdf-syntax-ns#type"} object: null graph: {}) DebugDataset.ts:106
+DebugDataset: match(subject: {"value":"http://www.example.com/JohnColleague.html"} predicate: null object: null graph: {}) DebugDataset.ts:106
+DebugDataset: match(subject: {"value":"http://www.example.com/JameColleague.html"} predicate: {"value":"http://www.w3.org/1999/02/22-rdf-syntax-ns#type"} object: null graph: {}) DebugDataset.ts:106
+DebugDataset: match(subject: {"value":"http://www.example.com/JameColleague.html"} predicate: null object: null graph: {}) DebugDataset.ts:106
+DebugDataset: match(subject: {"value":"https://www.facebook.com/"} predicate: {"value":"http://www.w3.org/1999/02/22-rdf-syntax-ns#type"} object: null graph: {}) DebugDataset.ts:106
+DebugDataset: match(subject: {"value":"https://www.facebook.com/"} predicate: null object: null graph: {}) DebugDataset.ts:106
+DebugDataset: match(subject: {"value":"https://www.linkedin.com/"} predicate: {"value":"http://www.w3.org/1999/02/22-rdf-syntax-ns#type"} object: null graph: {}) DebugDataset.ts:106
+DebugDataset: match(subject: {"value":"https://www.linkedin.com/"} predicate: null object: null graph: {}) DebugDataset.ts:106
+DebugDataset: match(subject: {"value":"http://twitter.com/"} predicate: {"value":"http://www.w3.org/1999/02/22-rdf-syntax-ns#type"} object: null graph: {}) DebugDataset.ts:106
+DebugDataset: match(subject: {"value":"http://twitter.com/"} predicate: null object: null graph: {}) DebugDataset.ts:106
+DebugDataset: match(subject: {"value":"http://instagram.com/"} predicate: {"value":"http://www.w3.org/1999/02/22-rdf-syntax-ns#type"} object: null graph: {}) DebugDataset.ts:106
+DebugDataset: match(subject: {"value":"http://instagram.com/"} predicate: null object: null graph: {}) DebugDataset.ts:106
+DebugDataset: match(subject: {"value":"https://plus.google.com/"} predicate: {"value":"http://www.w3.org/1999/02/22-rdf-syntax-ns#type"} object: null graph: {}) DebugDataset.ts:106
+DebugDataset: match(subject: {"value":"https://plus.google.com/"} predicate: null object: null graph: {}) DebugDataset.ts:106
+DebugDataset: match(subject: {"value":"http://www.example.com"} predicate: {"value":"http://www.w3.org/1999/02/22-rdf-syntax-ns#type"} object: null graph: {}) DebugDataset.ts:106
+DebugDataset: match(subject: {"value":"http://www.example.com"} predicate: null object: null graph: {}) DebugDataset.ts:106
+DebugDataset: match(subject: {"value":"_:b1","isAnonymous":false} predicate: {"value":"http://www.w3.org/1999/02/22-rdf-syntax-ns#type"} object: null graph: {}) DebugDataset.ts:106
+DebugDataset: match(subject: {"value":"_:b1","isAnonymous":false} predicate: null object: null graph: {}) DebugDataset.ts:106
+DebugDataset: match(subject: {"value":"_:b2","isAnonymous":false} predicate: {"value":"http://www.w3.org/1999/02/22-rdf-syntax-ns#type"} object: null graph: {}) DebugDataset.ts:106
+DebugDataset: match(subject: {"value":"_:b2","isAnonymous":false} predicate: null object: null graph: {}) DebugDataset.ts:106
+DebugDataset: match(subject: {"value":"_:b3","isAnonymous":false} predicate: {"value":"http://www.w3.org/1999/02/22-rdf-syntax-ns#type"} object: null graph: {}) DebugDataset.ts:106
+DebugDataset: match(subject: {"value":"_:b3","isAnonymous":false} predicate: null object: null graph: {}) DebugDataset.ts:106
+DebugDataset: match(subject: {"value":"_:b4","isAnonymous":false} predicate: {"value":"http://www.w3.org/1999/02/22-rdf-syntax-ns#type"} object: null graph: {}) DebugDataset.ts:106
+DebugDataset: match(subject: {"value":"_:b4","isAnonymous":false} predicate: null object: null graph: {}) DebugDataset.ts:106
+DebugDataset: match(subject: {"value":"_:b5","isAnonymous":false} predicate: {"value":"http://www.w3.org/1999/02/22-rdf-syntax-ns#type"} object: null graph: {}) DebugDataset.ts:106
+DebugDataset: match(subject: {"value":"_:b5","isAnonymous":false} predicate: null object: null graph: {}) DebugDataset.ts:106
+DebugDataset: match(subject: {"value":"_:b6","isAnonymous":false} predicate: {"value":"http://www.w3.org/1999/02/22-rdf-syntax-ns#type"} object: null graph: {}) DebugDataset.ts:106
+DebugDataset: match(subject: {"value":"_:b6","isAnonymous":false} predicate: null object: null graph: {}) DebugDataset.ts:106
+undefined GenericListItem.tsx:35
+Proxy { <target>: {…}, <handler>: {…} }
+GenericListItem.tsx:37
+Array [ "A person" ]
+GenericListItem.tsx:39
+null GenericListItem.tsx:41
+null GenericListItem.tsx:42
+null GenericListItem.tsx:43
+1
+
+​
+

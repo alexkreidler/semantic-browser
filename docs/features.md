@@ -38,3 +38,9 @@ Could create a version of rdf-dataset-indexed or any rdf/js Dataset implementati
 Also the inconsistency between the graph and object data model of JS means perf could be problem. I see lots of iteration in the N3Store.js implementation.
 
 For now: work on Collection using passed objects.
+
+## About indexed dataset
+
+rdf-ext uses rdf-dataset-indexed which uses an old forked version of N3. That old version still requires client libraries to implement equals on the quads, which jsonld.js doesn't do.
+
+Let's see if Graphy.js works better

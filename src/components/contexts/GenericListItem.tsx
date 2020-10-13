@@ -1,35 +1,79 @@
-import { ClownfaceSpec, SemanticComponent, Strictness } from "@semanticweb/loqu"
+import { Resource } from "@rdfine/hydra"
+import {
+  ClownfaceSpec,
+  DocumentedResource,
+  RDFineSpec,
+  renderSingleComponent,
+  SemanticComponent,
+  Strictness,
+} from "@semanticweb/loqu"
 import React from "react"
+import data from "../data.json"
+import * as jsonld from "jsonld"
+import { Dataset, Quad } from "rdf-js"
+import { useAsync } from "react-async-hook"
 
-// const fm: JsonLDSpec = {
-//   format: "jsonld",
-//   form: "framed",
-// }
+// declare module "@graphy/memory.dataset.fast"
+// import {FastDataset} from "../@types/index.d.ts"
+import dataset, { AnyQuad } from "@graphy/memory.dataset.fast"
+import { schema } from "@tpluscode/rdf-ns-builders"
+import { DataFactory } from "rdf-data-factory"
+import { DebugDataset } from "../DebugDataset"
 
-export const GL: SemanticComponent<ClownfaceSpec> = {
+const factory = new DataFactory()
+
+export const GComp: SemanticComponent<RDFineSpec> = {
   selector: {
     iri: /.*/,
   },
   data: {
     strictness: Strictness.NoChecks,
     spec: {
-      format: "clownface",
+      format: "rdfine",
     },
   },
 
   component: ({ data, spec }) => {
-    return <div></div>
+    console.log("Inner comp")
+
+    const d = (data.object as Resource) as DocumentedResource
+
+    return (
+      <div>
+        <h2>{d.title}</h2>
+        <p>{d.description}</p>
+      </div>
+    )
   },
 }
 
-// type Test<E extends RDFData, F extends object> = {
-//   format: E["format"]
-//   frame: F
-//   data: () => E extends JSONLD ? (E["form"] extends "framed" ? FrameMap<F> : E) : E
-// }
+const loadData = async () => {
+  const qs = (await jsonld.toRDF(data)) as Quad[]
 
-// const t: Test<JSONLD, { hey: string }> = {
-//   format: "jsonld",
-//   frame: { hey: "string" },
-//   data: () => l,
-// }
+  const ds = new DebugDataset()
+  ds.addAll(qs)
+
+  return ds
+}
+
+// { data }: { data: any }
+
+export const GenericListItemTest = () => {
+  const status = useAsync(loadData, [])
+  switch (status.status) {
+    case "success":
+      const d = status.result!
+      const o = renderSingleComponent(GComp, {
+        // @ts-ignore
+        dataset: d,
+        node: factory.namedNode("http://example.com/Jane-Doe"),
+      })
+      // console.log("Inner out", o)
+
+      return <>{o}</>
+
+    case "error":
+      throw status.error
+  }
+  return <>"failed"</>
+}

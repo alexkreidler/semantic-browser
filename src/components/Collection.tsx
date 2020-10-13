@@ -2,10 +2,10 @@ import React from "react"
 import { BaseState } from "./MultiWindow"
 import {
   Collection,
-  Hydra,
-  HydraResource
+  Resource,
   // Operation,
-} from "@alexkreidler/alcaeus"
+} from "alcaeus"
+import { Hydra } from "alcaeus/web"
 import { observer } from "mobx-react-lite"
 import { useAsync } from "react-async-hook"
 import { Card } from "@blueprintjs/core"
@@ -23,7 +23,7 @@ export type CollectionState = {
 const doOperationByID = async (resource: string, operation: string) => {
   const { representation } = await Hydra.loadResource(resource)
   const r = representation?.root!
-  const ops = r.getOperationsDeep().filter(op => {
+  const ops = r.getOperationsDeep().filter((op) => {
     return op.supportedOperation.id.value == operation
   })
   if (ops.length !== 1) {
@@ -36,19 +36,19 @@ const doOperationByID = async (resource: string, operation: string) => {
   return out
 }
 
-const IntCollection = ({ c }: { c: HydraResource }) => {
+const IntCollection = ({ c }: { c: Collection }) => {
   return (
     <div>
       <p>
         Collection ID: {c.id.value} Has {c.totalItems}
       </p>
-      {c.members
-        ? c.members.map((r: HydraResource) => {
+      {c.member
+        ? c.member.map((r) => {
             return (
               <Card>
                 {r.id.value} Types:
                 {Array.from(r.types.keys())
-                  .map(r => r.id.value)
+                  .map((r) => r.id.value)
                   .join(",")}
               </Card>
             )

@@ -6,6 +6,7 @@ import { NewWindow, NewWindowState } from "./NewWindow"
 
 import { makeAutoObservable } from "mobx"
 import { MosaicWindowContext } from "react-mosaic-component"
+import { TestGenerics } from "./TestGenerics"
 export type MultiWindowProps = {
   id: ViewId
   session: Session
@@ -58,7 +59,7 @@ export const MultiWindow = observer(({ id, session }: MultiWindowProps) => {
   const ab = (d: typeof data) => {
     switch (d.type) {
       case "NewWindow":
-        return <NewWindow></NewWindow>
+        return <TestGenerics></TestGenerics>
 
       case "Collection":
         return <CollectionView data={d}></CollectionView>
