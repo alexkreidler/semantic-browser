@@ -14,8 +14,9 @@ export const EntityList = ({ entities }: { entities: Entity[] }) => {
     <div>
       {entities.map((e) => (
         <Card key={e.resource.id.value} className="flex entity-list">
+          {console.log(e.class.toJSON())}
           <div className="grow about">
-            <h2>{e.class.title}</h2>
+            <h2>{e.class.label}</h2>
             <p>{e.class.description}</p>
           </div>
           <ButtonGroup minimal={true}>

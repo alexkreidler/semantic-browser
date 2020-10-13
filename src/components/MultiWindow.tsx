@@ -7,13 +7,14 @@ import { NewWindow, NewWindowState } from "./NewWindow"
 import { makeAutoObservable } from "mobx"
 import { MosaicWindowContext } from "react-mosaic-component"
 import { TestGenerics } from "./TestGenerics"
+import { ResourceState, ResourceView } from "./Resource"
 // import { TestGenerics } from "./TestGenerics"
 export type MultiWindowProps = {
   id: ViewId
   session: Session
 }
 
-export type WindowState = NewWindowState | CollectionState
+export type WindowState = NewWindowState | CollectionState | ResourceState
 
 export interface IWindowControl {
   updateCurrentWindow(data: WindowState): void
@@ -60,10 +61,13 @@ export const MultiWindow = observer(({ id, session }: MultiWindowProps) => {
   const ab = (d: typeof data) => {
     switch (d.type) {
       case "NewWindow":
-        return <TestGenerics></TestGenerics>
+        return <NewWindow></NewWindow>
 
       case "Collection":
         return <CollectionView data={d}></CollectionView>
+
+      case "Resource":
+        return <ResourceView data={d}></ResourceView>
 
       default:
         return <>Whoops! There's been an error.</>

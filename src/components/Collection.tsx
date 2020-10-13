@@ -1,10 +1,13 @@
-import React from "react"
-import { BaseState } from "./MultiWindow"
+import React, { useContext } from "react"
+import { BaseState, WindowContext } from "./MultiWindow"
 import { Collection } from "alcaeus"
 import { observer } from "mobx-react-lite"
 import { useAsync } from "react-async-hook"
 import { Card } from "@blueprintjs/core"
-import { doOperationByID } from "@semanticweb/loqu"
+import { doOperationByID, renderSingleComponent } from "@semanticweb/loqu"
+import { GComp } from "./contexts/GenericListItem"
+import { NamedNode } from "rdf-js"
+import { ResourceState } from "./Resource"
 
 export type CollectionState = {
   type: "Collection"
@@ -13,21 +16,40 @@ export type CollectionState = {
 }
 
 const IntCollection = ({ c }: { c: Collection }) => {
+  const wc = useContext(WindowContext)
   return (
-    <div>
-      <p>
-        Collection ID: {c.id.value} Has {c.totalItems}
-      </p>
+    <div className="collection">
+      <div className="flex">
+        <h1>Collection</h1>
+        <p className="grey">{c.id.value}</p>
+      </div>
       {c.member
         ? c.member.map((r) => {
-            return (
-              <Card>
-                {r.id.value} Types:
-                {Array.from(r.types.keys())
-                  .map((r) => r.id.value)
-                  .join(",")}
-              </Card>
+            const o = renderSingleComponent(
+              GComp,
+              {
+                // @ts-ignore
+                dataset: c.pointer.dataset,
+                node: r.id as NamedNode,
+              },
+              {
+                onClick: (evt) => {
+                  const ns: ResourceState = {
+                    type: "Resource",
+                    iri: r.id.value,
+                  }
+
+                  if (evt.ctrlKey) {
+                    wc.newWindow(ns)
+                  } else {
+                    wc.updateCurrentWindow(ns)
+                  }
+                },
+              }
             )
+            // console.log("Inner out", o)
+
+            return <>{o}</>
           })
         : "Whoops, no members found!"}
     </div>
@@ -42,7 +64,6 @@ export const CollectionView = observer(({ data }: BaseState<CollectionState>) =>
   }
   return (
     <div className="window">
-      <h1>Collection</h1>
       {stat.result ? <IntCollection c={stat.result as Collection}></IntCollection> : <p>Loading...</p>}
     </div>
   )

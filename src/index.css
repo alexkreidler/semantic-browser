@@ -74,3 +74,28 @@ body,
 .generic-list-item > h2 {
   margin-top: 0;
 }
+
+.generic-list-item {
+  margin: 1rem 0;
+}
+
+.generic-list-item .id {
+  margin-bottom: 0;
+}
+
+.collection .flex h1,
+.collection .flex p {
+  margin: 0;
+  margin-right: 1rem;
+}
+.collection .flex h1 {
+  margin-bottom: 0.5rem;
+}
+.collection .flex {
+  align-items: center;
+  /* padding-bottom: 0.3rem; */
+  /* justify-content: center; */
+}
+.grey {
+  color: #5f5d5d;
+}
