@@ -1,5 +1,5 @@
 import React, { useContext } from "react"
-import { Entity } from "../services/get"
+import { Entity } from "@semanticweb/loqu"
 
 import { Button, ButtonGroup, Card, Position, Tooltip } from "@blueprintjs/core"
 import { WindowContext } from "./MultiWindow"
@@ -12,14 +12,14 @@ export const EntityList = ({ entities }: { entities: Entity[] }) => {
   const wc = useContext(WindowContext)
   return (
     <div>
-      {entities.map(e => (
+      {entities.map((e) => (
         <Card key={e.resource.id.value} className="flex entity-list">
           <div className="grow about">
             <h2>{e.class.title}</h2>
             <p>{e.class.description}</p>
           </div>
           <ButtonGroup minimal={true}>
-            {e.resource.getOperationsDeep().map(o => (
+            {e.resource.getOperationsDeep().map((o) => (
               <Tooltip key={o.method + o.target.id.value} content={o.title} position={Position.TOP}>
                 <Button
                   icon="database"
@@ -28,7 +28,7 @@ export const EntityList = ({ entities }: { entities: Entity[] }) => {
                     const ns: CollectionState = {
                       type: "Collection",
                       operationIRI: o.supportedOperation.id.value,
-                      resourceIRI: e.resource.id.value
+                      resourceIRI: e.resource.id.value,
                     }
 
                     if (evt.ctrlKey) {
