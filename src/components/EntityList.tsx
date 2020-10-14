@@ -8,7 +8,7 @@ import { CollectionState } from "./Collection"
 // We get some blueprint errors, so use this filter
 // -/(findDOMNode|legacy)/
 
-export const EntityList = ({ entities }: { entities: Entity[] }) => {
+export const EntityList: React.FC<{ entities: Entity[] }> = ({ entities }) => {
   const wc = useContext(WindowContext)
   return (
     <div>

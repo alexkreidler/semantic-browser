@@ -1,10 +1,11 @@
 import { Resource } from "@rdfine/hydra"
-import { DocumentedResource, RDFineSpec, SemanticComponent, Strictness } from "@semanticweb/loqu"
+import { UIContext, linked, DocumentedResource, RDFineSpec, SemanticComponent, Strictness } from "@semanticweb/loqu"
 import React from "react"
 
 // declare module "@graphy/memory.dataset.fast"
 // import {FastDataset} from "../@types/index.d.ts"
-import { schema } from "@tpluscode/rdf-ns-builders"
+// import { schema } from "@tpluscode/rdf-ns-builders"
+
 import { Card, ICardProps, Tooltip } from "@blueprintjs/core"
 
 export type ListItemProps = {
@@ -14,8 +15,14 @@ export type ListItemProps = {
 }
 
 export const GComp: SemanticComponent<RDFineSpec, ListItemProps> = {
+  id: "GenericListItem",
   selector: {
+    priority: -20,
+    type: "iri",
     iri: /.*/,
+  },
+  metadata: {
+    uiContext: UIContext.ListItem,
   },
   data: {
     strictness: Strictness.NoChecks,
@@ -25,9 +32,11 @@ export const GComp: SemanticComponent<RDFineSpec, ListItemProps> = {
   },
 
   component: ({ data, props }) => {
-    console.log("Inner comp", props)
+    // console.log("Inner comp", props)
 
     const d = (data.object as Resource) as Resource & DocumentedResource
+
+    // console.log(d)
 
     return (
       <Card className="generic-list-item" interactive onClick={props?.onClick}>
@@ -57,3 +66,6 @@ export const GComp: SemanticComponent<RDFineSpec, ListItemProps> = {
     )
   },
 }
+
+export const LinkedGenericListItem = linked(GComp)
+// linked(GComp): React.ComponentType

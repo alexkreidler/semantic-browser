@@ -14,18 +14,18 @@ declare module "@graphy/memory.dataset.fast" {
     object: AnyTerm
     graph?: AnyTerm
   }
-  export type Quad = {}
+  export type Quad = unknown
   export class FastDataset {
     readonly size: number;
 
     /** create an iterator to traverse each quad in this. */
-    [Symbol.iterator](): Iterator<RDFQuad, any, undefined>
+    [Symbol.iterator](): Iterator<RDFQuad>
 
     /**create a new FastDataset by applying the RDF Dataset Normalization Algorithm (URDNA2015). If you want isomorphism to hold under the usual FastDataset methods, you should use this method on both dataset instances prior to testing .equals(), .contains(), .disjoint(), and prior to using .union(), .intersection(), .minus(), and .difference(). */
     canonicalize(): FastDataset
 
     /**add a single quad to the dataset; will only succeed if the quad is not already present. */
-    add(quad: AnyQuad)
+    add(quad: AnyQuad): void
 
     /**add quads to the dataset; will only add each quad that is not already present. */
     addAll(quads: Dataset | AnyQuad[]): this
@@ -37,7 +37,7 @@ declare module "@graphy/memory.dataset.fast" {
     delete(quad: AnyQuad): this
 
     /** delete the given quads from the dataset if they exist. */
-    deleteQuads(quads: Quad)
+    deleteQuads(quads: Quad): void
 
     /** remove all quads from the dataset. */
     clear(): undefined

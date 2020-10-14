@@ -4,7 +4,7 @@ export type ResourceState = {
   iri: string
 }
 
-export const ResourceView = ({ data }: { data: ResourceState }) => {
+export const ResourceView: React.FC<{ data: ResourceState }> = ({ data }) => {
   return (
     <div className="window">
       <h1>Resource</h1>

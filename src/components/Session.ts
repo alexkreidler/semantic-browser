@@ -3,14 +3,6 @@ import { WindowState } from "./MultiWindow"
 import { MosaicNode } from "react-mosaic-component"
 
 import { makeAutoObservable } from "mobx"
-// import { HydraClient } from "@alexkreidler/alcaeus/alcaeus";
-// import datasetIndexed from "rdf-dataset-indexed";
-// import { create } from "@alexkreidler/alcaeus";
-
-// import formats from "@rdfjs/formats-common";
-// import { HydraClient } from "@alexkreidler/alcaeus/dist/types/alcaeus";
-// import DatasetIndexed from "rdf-dataset-indexed/dataset";
-// const parsers = formats.parsers;
 
 export type ViewId = string
 export type Nodes = {
@@ -25,38 +17,26 @@ export interface ISession {
   nodes: Nodes
   mosaicState: MosaicNode<ViewId>
 }
-type Basic = () => void
+// type Basic = () => void
 export class Session {
   public s: ISession
-  // private h: HydraClient;
-  // private data: DatasetIndexed;
 
   constructor() {
-    // this.data = datasetIndexed();
-    // this.h = create({
-    //   dataset: this.data,
-    //   fetch,
-    //   Headers,
-    //   parsers,
-    //   datasetFactory: datasetIndexed,
-    // });
-    // this.data.size
-
     const first_key = ulid()
     this.s = {
       nodes: {
         [first_key]: {
           idx: 1,
           title: "Window #1",
-          data: { type: "NewWindow" }
-        }
+          data: { type: "NewWindow" },
+        },
       },
-      mosaicState: first_key
+      mosaicState: first_key,
     }
     makeAutoObservable(this)
   }
 
-  createNode = (windowContext?: WindowState) => {
+  createNode = (windowContext?: WindowState): ViewId => {
     // console.log("args", windowContext);
 
     const id = ulid()
@@ -64,7 +44,7 @@ export class Session {
     this.s.nodes[id] = {
       idx,
       title: `Window #${idx}`,
-      data: windowContext || { type: "NewWindow" }
+      data: windowContext || { type: "NewWindow" },
     }
     return id
   }

@@ -1,14 +1,8 @@
 import React, { useState } from "react"
 import { Mosaic, MosaicWindow, MosaicZeroState } from "react-mosaic-component"
 
-// doesn't work in jest
-// import "@mosaic/theme.css";
-// import "@blueprintjs/core/lib/css/blueprint.css";
-// import "@blueprintjs/icons/lib/css/blueprint-icons.css";
-
 import { Button, ButtonGroup, Colors, Dialog, InputGroup, Intent, Popover, TextArea } from "@blueprintjs/core"
 import { MultiWindow } from "./MultiWindow"
-import _ from "lodash"
 
 import { Session } from "./Session"
 import { observer, Observer } from "mobx-react-lite"
@@ -70,7 +64,7 @@ export const WindowManager = observer<WindowProps>(({ session }) => {
                           value={session.s.nodes[id].title}
                           // TODO: OnChange fix here.
                           // Tried earlier seemed useState was causing lots of overhead/perf issues
-                          onChange={(evt: any) => {
+                          onChange={(evt: React.ChangeEvent<HTMLInputElement>) => {
                             session.s.nodes[id].title = evt.target.value
                           }}
                         ></InputGroup>

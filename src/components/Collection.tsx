@@ -3,9 +3,7 @@ import { BaseState, WindowContext } from "./MultiWindow"
 import { Collection } from "alcaeus"
 import { observer } from "mobx-react-lite"
 import { useAsync } from "react-async-hook"
-import { Card } from "@blueprintjs/core"
-import { doOperationByID, renderSingleComponent } from "@semanticweb/loqu"
-import { GComp } from "./contexts/GenericListItem"
+import { doOperationByID, Entrypoint, UIContext } from "@semanticweb/loqu"
 import { NamedNode } from "rdf-js"
 import { ResourceState } from "./Resource"
 
@@ -25,15 +23,19 @@ const IntCollection = ({ c }: { c: Collection }) => {
       </div>
       {c.member
         ? c.member.map((r) => {
-            const o = renderSingleComponent(
-              GComp,
-              {
-                // @ts-ignore
-                dataset: c.pointer.dataset,
-                node: r.id as NamedNode,
-              },
-              {
-                onClick: (evt) => {
+            const data = {
+              dataset: c.pointer.dataset,
+              node: r.id as NamedNode,
+            }
+
+            // return <LinkedGenericListItem data={dataset: ..} onClick={}>
+            // return <Dynamic data={} metadata={} uiContext={} onClick={}
+
+            return (
+              <Entrypoint
+                data={data}
+                uiContext={UIContext.ListItem}
+                onClick={(evt: any) => {
                   const ns: ResourceState = {
                     type: "Resource",
                     iri: r.id.value,
@@ -44,12 +46,9 @@ const IntCollection = ({ c }: { c: Collection }) => {
                   } else {
                     wc.updateCurrentWindow(ns)
                   }
-                },
-              }
+                }}
+              ></Entrypoint>
             )
-            // console.log("Inner out", o)
-
-            return <>{o}</>
           })
         : "Whoops, no members found!"}
     </div>

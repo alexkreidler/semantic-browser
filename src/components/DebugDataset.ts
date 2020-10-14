@@ -1,8 +1,10 @@
 import { BaseQuad, BlankNode, Dataset, DefaultGraph, Literal, NamedNode, Quad, Stream, Term, Variable } from "rdf-js"
 import dataset, { AnyQuad, FastDataset } from "@graphy/memory.dataset.fast"
+
+/* eslint-disable */
 export class DebugDataset implements Dataset {
   // CORE
-  size: number = 0
+  size = 0
   ds: FastDataset = dataset()
 
   add(quad: Quad): this {

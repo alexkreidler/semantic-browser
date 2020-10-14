@@ -5,7 +5,7 @@ import { DEFAULT_ENTRYPOINT } from "../services/backend"
 import { useAsync } from "react-async-hook"
 import { getEntities } from "@semanticweb/loqu"
 
-export type NewWindowProps = {}
+export type NewWindowProps = unknown
 export const NewWindow: React.FC<NewWindowProps> = () => {
   const stat = useAsync(getEntities, [DEFAULT_ENTRYPOINT])
   return (
