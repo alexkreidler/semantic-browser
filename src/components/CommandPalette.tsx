@@ -6,9 +6,10 @@ import { HotkeysTarget } from "@blueprintjs/core/lib/esnext/components/hotkeys/h
 import { ItemRenderer, ItemPredicate, Omnibar } from "@blueprintjs/select"
 
 export type Command = {
+  id: string
   title: string
   description: string
-  handler: () => void
+  handler: (...args: any[]) => void
 }
 
 const CommandSelect = Omnibar.ofType<Command>()
@@ -38,6 +39,7 @@ const renderCommand: ItemRenderer<Command> = (command, { handleClick, modifiers 
 
 export interface ICommandPaletteProps {
   commands: Command[]
+  handlerArgs?: Record<string, any[]>
 }
 
 interface ICommandPaletteState {
@@ -53,6 +55,10 @@ export class CommandPalette extends Component<ICommandPaletteProps, ICommandPale
 
   constructor(props: ICommandPaletteProps) {
     super(props)
+    // makeAutoObservable(this)
+    // makeObservable(this, {
+
+    // })
     // this.commands = props.commands
   }
 
@@ -79,7 +85,11 @@ export class CommandPalette extends Component<ICommandPaletteProps, ICommandPale
         onItemSelect={(item) => {
           console.log(`selected ${item.title}`)
           this.handleToggle()
-          item.handler()
+          if (this.props.handlerArgs) {
+            item.handler(...this.props.handlerArgs[item.id])
+          } else {
+            item.handler()
+          }
         }}
         isOpen={this.state.isOpen}
         itemPredicate={filterCommand}

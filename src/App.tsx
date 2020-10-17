@@ -9,7 +9,9 @@ const sess = new Session()
 function App() {
   return (
     <ThemeWrapper>
-      <WindowManager session={sess}></WindowManager>
+      <div className="app">
+        <WindowManager session={sess}></WindowManager>
+      </div>
     </ThemeWrapper>
   )
 }

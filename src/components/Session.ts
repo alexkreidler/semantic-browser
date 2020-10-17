@@ -3,6 +3,7 @@ import { WindowState } from "./MultiWindow"
 import { MosaicNode } from "react-mosaic-component"
 
 import { makeAutoObservable } from "mobx"
+import { WindowManagerID } from "./Windows"
 
 export type ViewId = string
 export type Nodes = {
@@ -31,7 +32,12 @@ export class Session {
           data: { type: "NewWindow" },
         },
       },
-      mosaicState: first_key,
+      mosaicState: {
+        direction: "row",
+        first: WindowManagerID,
+        second: first_key,
+        splitPercentage: 20,
+      }, //first_key,
     }
     makeAutoObservable(this)
   }
@@ -77,4 +83,8 @@ export class Session {
     // TODO: maybe validate this a bit more before accepting
     this.s = out
   }
+}
+
+export interface ISessionProps {
+  session: Session
 }

@@ -2,7 +2,7 @@ import { Button, Colors, Dialog, Intent, TextArea } from "@blueprintjs/core"
 import { observer } from "mobx-react-lite"
 import React, { useState } from "react"
 import { DSER, SER } from "./serialize"
-import { Session } from "./Session"
+import { ISessionProps, Session } from "./Session"
 
 const DeserializeSubmission = observer(({ onSubmit }: { onSubmit: (input: string) => Error | undefined }) => {
   const [value, setValue] = useState("")
@@ -23,8 +23,7 @@ const DeserializeSubmission = observer(({ onSubmit }: { onSubmit: (input: string
   )
 })
 
-export interface ISessionStateProps {
-  session: Session
+export interface ISessionStateProps extends ISessionProps {
   isOpen: boolean
   purpose: "ser" | "de"
   onClose: () => void

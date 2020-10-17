@@ -119,3 +119,18 @@ body,
 .resource-header .sb-avatar {
   margin-right: 1rem;
 }
+
+.app {
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+
+.side-panel {
+  width: 10rem;
+}
+
+.bp3-card.window-entry {
+  margin: 1rem 0;
+  padding: 0.8rem;
+}
