@@ -111,3 +111,11 @@ body,
   height: 10rem;
   max-width: 120rem;
 }
+
+.resource-header {
+  display: flex;
+}
+
+.resource-header .sb-avatar {
+  margin-right: 1rem;
+}
