@@ -3,4 +3,11 @@
 const { override } = require("customize-cra")
 const { addReactRefresh } = require("customize-cra-react-refresh")
 
-module.exports = override(addReactRefresh())
+// const pluginProposalDecorators = require("@babel/plugin-proposal-decorators")
+
+module.exports = override(
+  //   addDecoratorsLegacy(),
+  addReactRefresh()
+
+  // addBabelPlugin(pluginProposalDecorators)
+)
