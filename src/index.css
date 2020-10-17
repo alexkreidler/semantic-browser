@@ -99,3 +99,15 @@ body,
 .grey {
   color: #5f5d5d;
 }
+.list-tooltip {
+  width: 100%;
+}
+
+.list-tooltip span {
+  width: 100%;
+}
+.generic-card {
+  width: 15rem;
+  height: 10rem;
+  max-width: 120rem;
+}

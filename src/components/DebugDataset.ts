@@ -9,7 +9,8 @@ export class DebugDataset implements Dataset {
 
   add(quad: Quad): this {
     console.log("DebugDataset:  add")
-    return this.ds.add(quad as AnyQuad)
+    this.ds.add(quad as AnyQuad)
+    return this
   }
   delete(quad: Quad): this {
     console.log("DebugDataset:  delete")
@@ -20,6 +21,7 @@ export class DebugDataset implements Dataset {
     console.log("DebugDataset:  has")
     return this.ds.has(quad as AnyQuad)
   }
+
   [Symbol.iterator](): Iterator<Quad, any, undefined> {
     // console.log("DebugDataset:  [Symbol.iterator]")
     return this.ds[Symbol.iterator]()

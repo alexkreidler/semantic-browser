@@ -110,4 +110,4 @@ export const WindowManager = observer<WindowProps>(({ session }) => {
   )
 })
 
-export default WindowManager
+// export default WindowManager
