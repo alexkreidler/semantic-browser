@@ -1,22 +1,26 @@
 import { ulid } from "ulid"
 import { WindowState } from "./MultiWindow"
-import { MosaicNode } from "react-mosaic-component"
+import { MosaicNode, MosaicPath } from "react-mosaic-component"
 
 import { makeAutoObservable } from "mobx"
 import { WindowManagerID } from "./Windows"
 
 export type ViewId = string
 export type Nodes = {
-  [viewId: string]: {
-    idx: number
-    title: string
-    data: WindowState
-  }
+  [viewId: string]: Node
+}
+export type Node = {
+  id: string
+  idx: number
+  title: string
+  data: WindowState
+  path: MosaicPath
 }
 
 export interface ISession {
   nodes: Nodes
   mosaicState: MosaicNode<ViewId>
+  mosaicId: string
 }
 // type Basic = () => void
 export class Session {
@@ -25,11 +29,14 @@ export class Session {
   constructor() {
     const first_key = ulid()
     this.s = {
+      mosaicId: ulid(),
       nodes: {
         [first_key]: {
+          id: first_key,
           idx: 1,
           title: "Window #1",
           data: { type: "NewWindow" },
+          path: ["second"],
         },
       },
       mosaicState: {
@@ -48,9 +55,12 @@ export class Session {
     const id = ulid()
     const idx = Object.keys(this.s.nodes).length + 1
     this.s.nodes[id] = {
+      id,
       idx,
       title: `Window #${idx}`,
       data: windowContext || { type: "NewWindow" },
+      //@ts-ignore
+      path: [""],
     }
     return id
   }
