@@ -33,10 +33,6 @@ const renderCommand: ItemRenderer<Command> = (command, { handleClick, modifiers 
   )
 }
 
-{
-  /* <CommandSelect itemPredicate={filterCommand} itemRenderer={renderCommand} items={...} onItemSelect={...} /> */
-}
-
 export interface ICommandPaletteProps {
   commands: Command[]
   handlerArgs?: Record<string, any[]>
@@ -51,15 +47,6 @@ export class CommandPalette extends Component<ICommandPaletteProps, ICommandPale
   // private commands: Command[]
   public state = {
     isOpen: false,
-  }
-
-  constructor(props: ICommandPaletteProps) {
-    super(props)
-    // makeAutoObservable(this)
-    // makeObservable(this, {
-
-    // })
-    // this.commands = props.commands
   }
 
   private handleToggle = () => this.setState({ isOpen: !this.state.isOpen })

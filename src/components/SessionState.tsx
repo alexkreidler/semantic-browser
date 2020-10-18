@@ -2,7 +2,7 @@ import { Button, Colors, Dialog, Intent, TextArea } from "@blueprintjs/core"
 import { observer } from "mobx-react-lite"
 import React, { useState } from "react"
 import { DSER, SER } from "./serialize"
-import { ISessionProps, Session } from "./Session"
+import { ISessionProps } from "./Session"
 
 const DeserializeSubmission = observer(({ onSubmit }: { onSubmit: (input: string) => Error | undefined }) => {
   const [value, setValue] = useState("")
@@ -31,8 +31,8 @@ export interface ISessionStateProps extends ISessionProps {
 
 export const SessionState: React.FC<ISessionStateProps> = ({ session, isOpen, purpose, onClose }) => {
   return (
-    <Dialog title={purpose == "ser" ? SER : DSER} isOpen={isOpen} onClose={onClose}>
-      {purpose == "ser" ? (
+    <Dialog title={purpose === "ser" ? SER : DSER} isOpen={isOpen} onClose={onClose}>
+      {purpose === "ser" ? (
         <div className="padded">
           {/* <h1>Output</h1> */}
           <TextArea large={true} fill={true} value={session.serializeJSON()} />

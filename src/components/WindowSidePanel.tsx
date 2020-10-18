@@ -5,9 +5,10 @@ import { ISessionProps } from "./Session"
 import { useDrag } from "react-dnd"
 import { Node } from "./Session"
 import { MosaicDragItem, MosaicDropData } from "react-mosaic-component/lib/internalTypes"
-import { createDragToUpdates, MosaicContext } from "react-mosaic-component"
+import { createDragToUpdates, MosaicContext, MosaicWindowContext } from "react-mosaic-component"
 import { InternalDropTargetProps } from "react-mosaic-component/lib/MosaicWindow"
 import { isEqual } from "lodash"
+import { WindowState } from "./MultiWindow"
 
 interface MDrag extends MosaicDragItem {
   type: "MosaicWindow"
@@ -15,7 +16,7 @@ interface MDrag extends MosaicDragItem {
 }
 
 const DraggableWindow: React.FC<{ node: Node } & ISessionProps> = ({ node, session }) => {
-  const dragItem: MDrag = { mosaicId: session.s.mosaicId, nodeID: node.id, hideTimer: 0, type: "MosaicWindow" }
+  const dragItem: MDrag = { mosaicId: "mainWindow", nodeID: node.id, hideTimer: 0, type: "MosaicWindow" }
 
   const mosaic = useContext(MosaicContext)
 
@@ -33,7 +34,17 @@ const DraggableWindow: React.FC<{ node: Node } & ISessionProps> = ({ node, sessi
       // The source path is the path of the node currently selected by the user in the window controller sidebar
       const sourcePath = node.path
       if (position != null && destinationPath != null && !isEqual(destinationPath, sourcePath)) {
-        const update = createDragToUpdates(mosaic.mosaicActions.getRoot()!, sourcePath, destinationPath, position)
+        const root = mosaic.mosaicActions.getRoot()
+        if (!root) {
+          console.error("No root item found, cannot render window controller item")
+          return
+        }
+        if (!sourcePath || sourcePath.length < 2) {
+          console.error("No source path", sourcePath)
+          return
+        }
+        const update = createDragToUpdates(root, sourcePath, destinationPath, position)
+
         mosaic.mosaicActions.updateTree(update)
       }
     },
@@ -46,11 +57,16 @@ const DraggableWindow: React.FC<{ node: Node } & ISessionProps> = ({ node, sessi
   )
 }
 export const WindowSidePanel: React.FC<ISessionProps> = observer(({ session }) => {
+  const twin = useContext(MosaicWindowContext)
+  const mysplit = (a?: WindowState) => {
+    twin.mosaicWindowActions.split(a)
+  }
+  session.split = mysplit
   return (
     <div className="window">
       <h1>Window Controller</h1>
       {Object.entries(session.s.nodes).map(([, node]) => {
-        return <DraggableWindow node={node} session={session}></DraggableWindow>
+        return <DraggableWindow node={node} session={session} key={node.id}></DraggableWindow>
       })}
     </div>
   )

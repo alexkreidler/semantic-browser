@@ -1,16 +1,17 @@
 import React from "react"
-import { ExpandButton, Mosaic, MosaicWindow, MosaicZeroState } from "react-mosaic-component"
+import { ExpandButton, Mosaic, MosaicNode, MosaicWindow, MosaicZeroState } from "react-mosaic-component"
 
 import { Button, ButtonGroup, InputGroup, Popover } from "@blueprintjs/core"
 import { MultiWindow } from "./MultiWindow"
 
-import { ISessionProps, Session } from "./Session"
+import { ISessionProps } from "./Session"
 import { observer, Observer } from "mobx-react-lite"
 import { SessionCommands } from "./SessionCommands"
 import { WindowSidePanel } from "./WindowSidePanel"
 import { DndProvider } from "react-dnd"
 import MultiBackend from "react-dnd-multi-backend"
 import HTML5ToTouch from "react-dnd-multi-backend/dist/cjs/HTML5toTouch"
+import { action } from "mobx"
 
 export type WindowProps = ISessionProps //{ session: Session }
 
@@ -26,13 +27,18 @@ export const WindowManager = observer<WindowProps>(({ session }) => {
         <SessionCommands session={session}></SessionCommands>
         {/* TODO: maybe mosaic without context */}
         <Mosaic<string>
-          mosaicId={session.s.mosaicId}
+          mosaicId="mainWindow"
           renderTile={(id, path) => (
-            <Observer>
+            <Observer key={id}>
               {() => {
-                if (id == WindowManagerID) {
+                if (id === WindowManagerID) {
                   return (
-                    <MosaicWindow<string> path={path} title="Window Controller" toolbarControls={[<ExpandButton />]}>
+                    <MosaicWindow<string>
+                      path={path}
+                      title="Window Controller"
+                      toolbarControls={[<ExpandButton key="expand" />]}
+                      createNode={session.createNode}
+                    >
                       <WindowSidePanel session={session}></WindowSidePanel>
                     </MosaicWindow>
                   )
@@ -73,9 +79,14 @@ export const WindowManager = observer<WindowProps>(({ session }) => {
           zeroStateView={<MosaicZeroState createNode={session.createNode} />}
           // initialValue={session.s.mosaicState}
           value={session.s.mosaicState}
-          onChange={(m) => {
-            session.s.mosaicState = m!
-          }}
+          onChange={action("update mosaic state", (m: MosaicNode<string> | null) => {
+            if (!m) {
+              console.error("Failed to update mosaic state")
+              return
+            }
+
+            session.s.mosaicState = m
+          })}
         />
       </DndProvider>
     </>

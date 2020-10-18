@@ -3,20 +3,18 @@ import React from "react"
 import { useAsync } from "react-async-hook"
 
 import { Hydra } from "alcaeus/web"
-import { RdfResource } from "@tpluscode/rdfine"
 import { Resource } from "alcaeus"
-import { Entrypoint, toJSON, UIContext } from "@semanticweb/loqu"
+import { Entrypoint, UIContext } from "@semanticweb/loqu"
 
 export type ResourceState = {
   type: "Resource"
   iri: string
 }
 
-async function loadResource(iri: string): Promise<Resource> {
+async function loadResource(iri: string): Promise<Resource | undefined> {
   const { representation } = await Hydra.loadResource(iri)
-  const rr = representation!.root!
-  // console.log(await toJSON(rr))
-
+  // const rr = representation!.root!
+  const rr = representation && representation.root ? representation.root : undefined
   return rr
 }
 
@@ -25,10 +23,9 @@ export const ResourceView: React.FC<{ data: ResourceState }> = ({ data }) => {
   switch (state.status) {
     case "loading":
       return <>Loading...</>
-      break
-    case "success":
+    case "success": {
       // console.log(state.result?.toJSON())
-      let ds = { dataset: state.result?.pointer.dataset, node: state.result?.id }
+      const ds = { dataset: state.result?.pointer.dataset, node: state.result?.id }
       console.log(ds)
 
       return (
@@ -40,7 +37,10 @@ export const ResourceView: React.FC<{ data: ResourceState }> = ({ data }) => {
           ></Entrypoint>
         </div>
       )
-      break
+    }
+    case "error":
+      console.error(state.error)
+      return <>Error: {state.error}</>
 
     default:
       return <>FAILED</>

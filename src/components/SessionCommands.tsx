@@ -1,9 +1,7 @@
-import React, { useContext, useState } from "react"
-import { MosaicWindowContext } from "react-mosaic-component"
+import React, { useState } from "react"
 import { Command, CommandPalette } from "./CommandPalette"
-import { WindowContext } from "./MultiWindow"
 import { DSER, SER } from "./serialize"
-import { ISessionProps, Session } from "./Session"
+import { ISessionProps } from "./Session"
 import { SessionState } from "./SessionState"
 
 export const SessionCommands: React.FC<ISessionProps> = ({ session }) => {
@@ -36,9 +34,9 @@ export const SessionCommands: React.FC<ISessionProps> = ({ session }) => {
       description: "..",
       handler: () => {
         console.log("new", session)
-        session.createNode({
+        session.split({
           type: "Resource",
-          iri: "http://schema.org/Person",
+          iri: "https://schema.org/Person",
         })
       },
     },

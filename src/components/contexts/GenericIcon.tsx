@@ -21,7 +21,7 @@ export const GenericIcon: SemanticComponent<RDFineSpec, unknown> = {
     },
   },
 
-  component: ({ data, props }) => {
+  component: ({ data }) => {
     const d = (data.object as Resource) as Resource & DocumentedResource
 
     // TODO: possibly look up an icon to display based on the type

@@ -11,13 +11,7 @@ import {
 } from "@semanticweb/loqu"
 import React from "react"
 
-// declare module "@graphy/memory.dataset.fast"
-// import {FastDataset} from "../@types/index.d.ts"
-// import { schema } from "@tpluscode/rdf-ns-builders"
-
-import { Card, ICardProps, Popover, PopoverInteractionKind, Tooltip } from "@blueprintjs/core"
-import { NamedNode } from "rdf-js"
-import Avatar from "react-avatar"
+import { Card } from "@blueprintjs/core"
 
 export type CardProps = {
   nameProperty?: string
@@ -41,12 +35,7 @@ export const GenericCard: SemanticComponent<RDFineSpec, CardProps> = {
   },
 
   component: ({ data, props }) => {
-    // console.log("Inner comp", props)
-
     const d = (data.object as Resource) as Resource & DocumentedResource
-
-    // console.log(d)
-
     return (
       <Card className="generic-card">
         <Entrypoint data={RDFineData2RDFJS(data)} uiContext={UIContext.Icon}></Entrypoint>

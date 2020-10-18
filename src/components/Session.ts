@@ -20,7 +20,7 @@ export type Node = {
 export interface ISession {
   nodes: Nodes
   mosaicState: MosaicNode<ViewId>
-  mosaicId: string
+  // mosaicId: string
 }
 // type Basic = () => void
 export class Session {
@@ -29,7 +29,7 @@ export class Session {
   constructor() {
     const first_key = ulid()
     this.s = {
-      mosaicId: ulid(),
+      // mosaicId: ulid(),
       nodes: {
         [first_key]: {
           id: first_key,
@@ -64,6 +64,8 @@ export class Session {
     }
     return id
   }
+
+  split = (windowContext?: WindowState): void => {}
 
   resetTitle = (id: ViewId): (() => void) => {
     const rst = () => {
