@@ -58,9 +58,9 @@ export const WindowManager = observer<WindowProps>(({ session }) => {
                               value={session.s.nodes[id].title}
                               // TODO: OnChange fix here.
                               // Tried earlier seemed useState was causing lots of overhead/perf issues
-                              onChange={(evt: React.ChangeEvent<HTMLInputElement>) => {
+                              onChange={action((evt: React.ChangeEvent<HTMLInputElement>) => {
                                 session.s.nodes[id].title = evt.target.value
-                              }}
+                              })}
                             ></InputGroup>
                           }
                         >
@@ -79,6 +79,7 @@ export const WindowManager = observer<WindowProps>(({ session }) => {
           zeroStateView={<MosaicZeroState createNode={session.createNode} />}
           // initialValue={session.s.mosaicState}
           value={session.s.mosaicState}
+          // removing, adding, moving, resizing, etc.
           onChange={action("update mosaic state", (m: MosaicNode<string> | null) => {
             if (!m) {
               console.error("Failed to update mosaic state")

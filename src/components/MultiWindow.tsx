@@ -1,10 +1,10 @@
 import { Session, ViewId } from "./Session"
 import { observer } from "mobx-react-lite"
-import React, { createContext, useContext } from "react"
+import React, { createContext, useContext, useEffect } from "react"
 import { CollectionView, CollectionState } from "./Collection"
 import { NewWindow, NewWindowState } from "./NewWindow"
 
-import { makeAutoObservable } from "mobx"
+import { action, makeAutoObservable } from "mobx"
 import { MosaicWindowContext } from "react-mosaic-component"
 import { ResourceState, ResourceView } from "./Resource"
 import { initialize } from "./contexts/generics"
@@ -59,6 +59,12 @@ initialize()
 export const MultiWindow = observer(({ id, session }: MultiWindowProps) => {
   const wctx = useContext(MosaicWindowContext)
   const data = session.s.nodes[id].data
+
+  useEffect(() => {
+    return action(() => {
+      delete session.s.nodes[id]
+    })
+  }, [])
 
   const ab = (d: typeof data) => {
     switch (d.type) {

@@ -15,7 +15,7 @@ interface MDrag extends MosaicDragItem {
   nodeID: string
 }
 
-const DraggableWindow: React.FC<{ node: Node } & ISessionProps> = ({ node, session }) => {
+const DraggableWindow: React.FC<{ node: Node } & ISessionProps> = observer(({ node, session }) => {
   const dragItem: MDrag = { mosaicId: "mainWindow", nodeID: node.id, hideTimer: 0, type: "MosaicWindow" }
 
   const mosaic = useContext(MosaicContext)
@@ -55,7 +55,8 @@ const DraggableWindow: React.FC<{ node: Node } & ISessionProps> = ({ node, sessi
       <Card className="window-entry">{node.title}</Card>
     </div>
   )
-}
+})
+
 export const WindowSidePanel: React.FC<ISessionProps> = observer(({ session }) => {
   const twin = useContext(MosaicWindowContext)
   const mysplit = (a?: WindowState) => {
