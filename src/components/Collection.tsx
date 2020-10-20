@@ -33,6 +33,7 @@ const IntCollection = ({ c }: { c: Collection }) => {
 
             return (
               <Entrypoint
+                key={r.id.value}
                 data={data}
                 uiContext={UIContext.ListItem}
                 onClick={(evt: any) => {
@@ -58,12 +59,14 @@ const IntCollection = ({ c }: { c: Collection }) => {
 export const CollectionView = observer(({ data }: BaseState<CollectionState>) => {
   const stat = useAsync(doOperationByID, [data.resourceIRI, data.operationIRI])
 
-  if (stat.error) {
-    throw stat.error
-  }
   return (
     <div className="window">
       {stat.result ? <IntCollection c={stat.result as Collection}></IntCollection> : <p>Loading...</p>}
+      {stat.error ? (
+        <div>
+          Error {stat.error.name}: {stat.error.message}
+        </div>
+      ) : null}
     </div>
   )
 })

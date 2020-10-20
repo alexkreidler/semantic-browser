@@ -8,6 +8,7 @@ import { action, makeAutoObservable } from "mobx"
 import { MosaicWindowContext } from "react-mosaic-component"
 import { ResourceState, ResourceView } from "./Resource"
 import { initialize } from "./contexts/generics"
+import { initialize as semanticComponents } from "./semantic"
 // import { TestGenerics } from "./TestGenerics"
 export type MultiWindowProps = {
   id: ViewId
@@ -52,6 +53,7 @@ class Window implements IWindowControl {
 export const WindowContext = createContext<IWindowControl>()
 
 initialize()
+semanticComponents()
 
 // TODO: design common window base component props.
 // E.g. switchWindow changes the underlying window rendered by MultiWindow

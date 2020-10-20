@@ -36,7 +36,8 @@ export const SessionCommands: React.FC<ISessionProps> = ({ session }) => {
         console.log("new", session)
         session.split({
           type: "Resource",
-          iri: "https://schema.org/Person",
+          iri: "http://localhost:9090/people/2",
+          // iri: "https://schema.org/Person",
         })
       },
     },

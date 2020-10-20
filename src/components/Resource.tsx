@@ -5,7 +5,6 @@ import { useAsync } from "react-async-hook"
 import { Hydra } from "alcaeus/web"
 import { Resource } from "alcaeus"
 import { Entrypoint, UIContext } from "@semanticweb/loqu"
-
 export type ResourceState = {
   type: "Resource"
   iri: string
@@ -25,13 +24,17 @@ export const ResourceView: React.FC<{ data: ResourceState }> = ({ data }) => {
       return <>Loading...</>
     case "success": {
       // console.log(state.result?.toJSON())
-      const ds = { dataset: state.result?.pointer.dataset, node: state.result?.id }
-      console.log(ds)
+      const dataset = state.result?.pointer.dataset
+      const node = state.result?.id
+      if (!dataset || !node) {
+        return <>Error: The resource didn't return anything</>
+      }
+      const ds = { dataset, node }
 
       return (
         <div className="window">
           <Entrypoint
-            // @ts-ignore
+            //@ts-ignore
             data={ds}
             uiContext={UIContext.Page}
           ></Entrypoint>
